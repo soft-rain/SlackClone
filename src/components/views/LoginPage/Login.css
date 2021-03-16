@@ -101,6 +101,7 @@ input {
   display: block;
   margin: 0 auto;
   line-height: 20px;
+  padding-left: 12px;
   font-weight: 15px;
   font-family: NotoSansKR, Slack-Lato, appleLogo, sans-serif;
   font-size: 15px;

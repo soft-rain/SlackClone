@@ -1,6 +1,7 @@
 import React from "react";
 import GoogleButton from "./GoogleButton.js";
 import "./Login.css";
+import Login2 from "./Login2.js";
 
 class Login extends React.Component {
   render() {
@@ -27,7 +28,8 @@ class Login extends React.Component {
         {/* 구글로그인 버튼 */}
 
         <div className="googleLogin">
-          <GoogleButton />
+          {/* <GoogleButton /> */}
+          <Login2 />
         </div>
 
         <br></br>

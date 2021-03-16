@@ -32,3 +32,16 @@ export function auth() {
     payload: request,
   };
 }
+
+export function Googletoken(dataTosubmit) {
+  const request = axios
+    .post(
+      "https://slack-clone-0.herokuapp.com/api/auth/login/oauth2/code/google",
+      dataTosubmit
+    )
+    .then((response) => response.data);
+  return {
+    type: LOGIN_USER,
+    payload: request,
+  };
+}

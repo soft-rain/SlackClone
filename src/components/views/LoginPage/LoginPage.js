@@ -30,7 +30,7 @@ function LoginPage(props) {
       password: Password,
     };
 
-    dispatch(loginUser(body)) // actions > user_action.js의 loginUser 호출
+    loginUser(body) // actions > user_action.js의 loginUser 호출
       .then((response) => {
         if (response.payload.loginSuccess) {
           props.history.push("/");

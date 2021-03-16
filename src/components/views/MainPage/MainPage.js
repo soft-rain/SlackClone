@@ -2,8 +2,11 @@ import React, { useEffect } from "react";
 import axios from "axios";
 import { withRouter } from "react-router-dom";
 import Login from "../LoginPage/Login";
+import GoogleButton from "../LoginPage/GoogleButton";
+import LoginPage from "../LoginPage/LoginPage";
+import { bindActionCreators } from "redux";
 
-function LandingPage(props) {
+function MainPage(props) {
   useEffect(() => {
     axios.get("/api/hello").then((response) => {
       console.log(response.data);
@@ -14,29 +17,13 @@ function LandingPage(props) {
     axios.get("/api/logout").then((response) => {
       console.log(response.data);
       if (response.data.success) {
-        props.history.push("/login"); // react-router-dom 을 이용함
+        props.history.push("/login");
       } else {
         alert("Failed to logout");
       }
     });
   };
 
-  return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        width: "100%",
-        height: "100vh",
-      }}
-    >
-      <Login />
-      {/* <h2>시작 페이지</h2> */}
-
-      <button onClick={onClickHandler}>로그아웃</button>
-    </div>
-  );
+  return <div style={{ display: "block" }}></div>;
 }
-
-export default withRouter(LandingPage);
+export default withRouter(MainPage);
