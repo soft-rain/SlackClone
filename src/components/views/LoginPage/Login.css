@@ -29,7 +29,21 @@
   display: block;
   margin: 0 auto;
 }
-.googleLogin {
+.googleloginbutton {
+  text-align: center;
+  display: block;
+  background-color: #fff;
+  border-radius: 3px;
+  background: white;
+  border: 2px solid #4285f4;
+  color: black;
+  margin-left: 30%;
+  width: 40%;
+  box-sizing: border-box;
+  box-shadow: none;
+}
+
+button {
   text-align: center;
   display: block;
   background-color: #fff;
@@ -39,10 +53,10 @@
   color: red;
   margin-left: 30%;
   width: 40%;
+  height: 44px;
   box-sizing: border-box;
   box-shadow: none;
 }
-
 .hr-sect {
   display: flex;
   flex-basis: 100%;
@@ -109,4 +123,10 @@ input {
   font-variant-ligatures: common-ligatures;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
+}
+.buttonText {
+  font-size: 18px;
+  color: #4285f4;
+  font-weight: 800;
+  text-align: right;
 }

@@ -4,7 +4,7 @@ import { loginUser } from "../../../_actions/user_action";
 import { withRouter } from "react-router-dom";
 
 function LoginPage(props) {
-  const dispatch = useDispatch(); // dispatch 사용 (redux)
+  // const dispatch = useDispatch(); // dispatch 사용 (redux)
 
   // 이메일을 위한 state, 비밀번호를 위한 state 생성
   const [Email, setEmail] = useState(""); // 초깃값 : 빈 string
