@@ -34,12 +34,14 @@ export function auth() {
 }
 
 export function Googletoken(dataTosubmit) {
-  const request = axios
-    .post(
-      "https://slack-clone-0.herokuapp.com/api/auth/login/oauth2/code/google",
-      dataTosubmit
-    )
+  const request = axios.post(
+      "/api/auth/login/oauth2/code/google",
+      dataTosubmit, {
+        headers: { "Content-Type": `application/json`}
+    })
     .then((response) => response.data);
+
+  console.log(request);
   return {
     type: LOGIN_USER,
     payload: request,
