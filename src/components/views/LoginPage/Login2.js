@@ -2,9 +2,6 @@ import React, { useEffect, useState, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { Googletoken } from "../../../_actions/user_action";
-import "./Login.css";
-import "./googlelogo.png";
-import { GoogleLogin } from "react-google-login";
 
 function Google(props) {
   const googleLoginBtn = useRef(null);
@@ -38,7 +35,7 @@ function Google(props) {
             console.log(`Name: ${profile.getName()}`);
             console.log(`Image URL: ${profile.getImageUrl()}`);
             console.log(`Email: ${profile.getEmail()}`);
-            sendToken(googleUser.getAuthResponse().id_token);
+            sendToken(googleUser.getAuthResponse().access_token);
           },
           (error) => {
             alert(JSON.stringify(error, undefined, 2));
@@ -60,10 +57,9 @@ function Google(props) {
     })(document, "script", "google-jssdk");
   };
 
-  //백엔드로 token 보내기
   const sendToken = (token) => {
     let body = {
-      token: token,
+      access_token: token,
     };
 
     dispatch(Googletoken(body)).then((response) => {
@@ -74,18 +70,14 @@ function Google(props) {
       }
     });
   };
-
   return (
-    <div>
-      <button id="gSignInWrapper">
-        <span className="label" />
-        <div ref={googleLoginBtn} id="customBtn" className="customGPlusSignIn">
-          <span className="icon"></span>
-          <span className="buttonText">Google을(를) 사용하여 로그인</span>
-          {/* <GoogleLogin className="googleloginbutton" /> */}
-        </div>
-      </button>
-    </div>
+    <button id="gSignInWrapper">
+      <span className="label" />
+      <div ref={googleLoginBtn} id="customBtn" className="customGPlusSignIn">
+        <span className="icon"></span>
+        <span className="buttonText">Login with Google</span>
+      </div>
+    </button>
   );
 }
 

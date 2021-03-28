@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import LandingPage from "./components/views/LandingPage/LandingPage";
+import AuthCode from "./components/views/LoginPage/AuthCode";
 import LoginPage from "./components/views/LoginPage/LoginPage";
 import RegisterPage from "./components/views/RegisterPage/RegisterPage";
 import Auth from "./hoc/auth";
@@ -31,6 +32,8 @@ function App() {
           <Route exact path="/" component={Auth(LandingPage, null)} />
           <Route exact path="/login" component={Auth(LoginPage, false)} />
           <Route exact path="/register" component={Auth(RegisterPage, false)} />
+          <Route exact path="/authcode" component={AuthCode} />
+
           {/* exact이 붙어있으면 주어진 경로와 정확히 맞아 떨어져야만 설정한 컴포넌트를 보여준다. */}
         </Switch>
       </div>

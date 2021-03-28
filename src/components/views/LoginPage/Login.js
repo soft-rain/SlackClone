@@ -1,6 +1,8 @@
 import React from "react";
 import "./Login.css";
+// import GoogleButton from "./GoogleButton.js";
 import Login2 from "./Login2.js";
+import LoginPage from "./LoginPage";
 
 class Login extends React.Component {
   render() {
@@ -34,7 +36,10 @@ class Login extends React.Component {
         <br></br>
         <div className="hr-sect">또는</div>
         <br></br>
-        <input
+
+        <LoginPage />
+
+        {/* <input
           className="emailinput"
           placeholder="name@work-email.com"
           type="text"
@@ -42,7 +47,7 @@ class Login extends React.Component {
         <br></br>
         <button type="button" className="loginbutton">
           이메일로 로그인
-        </button>
+        </button> */}
         <div className="log-subtext">
           비밀번호 없이 로그인할 수 있도록 매직 코드를 이메일로 보내드립니다.
           아니면 수동으로 로그인하셔도 됩니다.
