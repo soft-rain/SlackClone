@@ -1,5 +1,11 @@
 import axios from "axios";
-import { LOGIN_USER, REGISTER_USER, AUTH_USER, SEND_EMAIL } from "./types";
+import {
+  LOGIN_USER,
+  REGISTER_USER,
+  AUTH_USER,
+  SEND_EMAIL,
+  CODE_CHECK,
+} from "./types";
 
 export function loginUser(dataTosubmit) {
   console.log("data to submit: ", { dataTosubmit });
@@ -47,13 +53,25 @@ export function Googletoken(dataTosubmit) {
   };
 }
 export function sendEmail(dataTosubmit) {
-  console.log("sendEmail: ", { dataTosubmit });
+  const result = true;
   const request = axios
     .post("/api/email", dataTosubmit)
-    .then((response) => response.data);
+    .then((response) => result);
 
   return {
     type: SEND_EMAIL,
+    payload: request,
+  };
+}
+
+export function codeCheck(dataTosubmit) {
+  const result = true;
+  const request = axios
+    .post("/api/email/verify-code", dataTosubmit)
+    .then((response) => result);
+
+  return {
+    type: CODE_CHECK,
     payload: request,
   };
 }

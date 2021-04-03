@@ -24,33 +24,14 @@ function LoginPage(props) {
       email: Email,
     };
 
-    dispatch(loginUser(body)) // actions > user_action.js의 loginUser 호출
-      .then((response) => {
-        if (response.payload.loginSuccess) {
-          props.history.push("/");
-        } else {
-          alert("error");
-        }
-      })
-      .then((response) => {
-        if (response.payload.loginSuccess) {
-          props.history.push("/"); // 페이지 이동
-        } else {
-          alert("error!");
-        }
-      });
-    axios.post("/api/login", body).then((response) => {});
-
     dispatch(sendEmail(body)) // actions > user_action.js의 loginUser 호출
       .then((response) => {
-        if (response.payload.loginSuccess) {
-          props.history.push("/");
+        if (response.payload) {
+          props.history.push("/authcode");
         } else {
           alert("error");
         }
       });
-    console.log("여기?");
-    axios.post("/api/email", body).then((response) => {});
   };
 
   return (
@@ -66,7 +47,7 @@ function LoginPage(props) {
         <br />
         <button
           onSubmit={onSubmitHandler}
-          type="button"
+          type="submit"
           className="loginbutton"
         >
           이메일로 로그인

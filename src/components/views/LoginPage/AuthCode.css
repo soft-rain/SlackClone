@@ -211,7 +211,7 @@ a {
   overflow: initial;
   padding: 0;
   text-align: initial;
-  vertical-align: initial;
+  /* vertical-align: initial; */
   cursor: pointer;
   font-size: 14px;
   line-height: 20px;
