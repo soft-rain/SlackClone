@@ -28,14 +28,12 @@ function Google(props) {
           {},
           (googleUser) => {
             const profile = googleUser.getBasicProfile();
-            console.log(profile);
-            console.log(`Token || ${googleUser.getAuthResponse().id_token}`);
-            setToken(googleUser.getAuthResponse().id_token);
+            sendToken(googleUser.getAuthResponse().access_token);
             console.log(`ID: ${profile.getId()}`);
             console.log(`Name: ${profile.getName()}`);
             console.log(`Image URL: ${profile.getImageUrl()}`);
             console.log(`Email: ${profile.getEmail()}`);
-            sendToken(googleUser.getAuthResponse().access_token);
+            // sendToken(googleUser.getAuthResponse().access_token);
           },
           (error) => {
             alert(JSON.stringify(error, undefined, 2));
@@ -57,11 +55,13 @@ function Google(props) {
     })(document, "script", "google-jssdk");
   };
 
-  const sendToken = (token) => {
+  //백엔드로 token 보내기
+  const sendToken = (googletoken) => {
     let body = {
-      access_token: token,
+      access_token: googletoken,
     };
 
+    console.log(body);
     dispatch(Googletoken(body)).then((response) => {
       if (response.payload) {
         props.history.push("/");

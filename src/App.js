@@ -32,7 +32,7 @@ function App() {
           <Route exact path="/" component={Auth(LandingPage, null)} />
           <Route exact path="/login" component={Auth(LoginPage, false)} />
           <Route exact path="/register" component={Auth(RegisterPage, false)} />
-          <Route exact path="/authcode" component={AuthCode} />
+          <Route exact path="/authcode" component={(AuthCode, null)} />
 
           {/* exact이 붙어있으면 주어진 경로와 정확히 맞아 떨어져야만 설정한 컴포넌트를 보여준다. */}
         </Switch>

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { LOGIN_USER, REGISTER_USER, AUTH_USER } from "./types";
+import { LOGIN_USER, REGISTER_USER, AUTH_USER, SEND_EMAIL } from "./types";
 
 export function loginUser(dataTosubmit) {
   console.log("data to submit: ", { dataTosubmit });
@@ -35,15 +35,25 @@ export function auth() {
 
 export function Googletoken(dataTosubmit) {
   const request = axios
-    .post(
-      "https://slack-clone-0.herokuapp.com/api/auth/login/oauth2/code/google",
-      dataTosubmit
-    )
+    .post("/api/auth/login/oauth2/code/google", dataTosubmit, {
+      headers: { "Content-Type": `application/json` },
+    })
     .then((response) => response.data);
-  console.log("Request ", request);
 
+  console.log(request);
   return {
     type: LOGIN_USER,
+    payload: request,
+  };
+}
+export function sendEmail(dataTosubmit) {
+  console.log("sendEmail: ", { dataTosubmit });
+  const request = axios
+    .post("/api/email", dataTosubmit)
+    .then((response) => response.data);
+
+  return {
+    type: SEND_EMAIL,
     payload: request,
   };
 }

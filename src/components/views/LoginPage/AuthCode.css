@@ -5,11 +5,11 @@ header {
   align-items: center;
   grid-template-columns: repeat(3, 1fr);
 }
-/* section {
+section {
   margin: auto;
   display: block;
-} */
-img {
+}
+.slacklogo img {
   height: 34px;
   margin: auto;
   display: block;
@@ -104,6 +104,7 @@ fieldset {
 }
 .display_flex {
   display: flex;
+  justify-content: center;
 }
 .split_input_item {
   --saf-0: rgba(var(--sk_foreground_max, 29, 28, 29), 0.7);
@@ -140,8 +141,14 @@ fieldset {
   vertical-align: middle;
   margin: 8px;
 }
+.alertbox {
+  display: block;
+}
+
 .checkerbox {
   display: block;
+  margin-top: 15px;
+  box-sizing: inherit;
 }
 .confirm_checker {
   display: block;
@@ -154,13 +161,30 @@ fieldset {
 }
 .alert_message-box {
   display: flex;
+  box-sizing: inherit;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.38463;
+  text-align: left;
+  margin-top: 0;
+  padding: 12px 16px;
+  color: rgba(var(--sk_primary_foreground, 29, 28, 29), 1);
 }
 p {
   margin-bottom: 16px;
+  text-align: center;
+  margin-top: 0;
+  padding: 12px 16px;
 }
 i {
   font-style: italic;
 }
+.alert_msg {
+  padding: 12px 16px;
+  box-sizing: inherit;
+  max-width: inherit;
+}
+
 .alert_icon {
   width: 20px;
   height: auto;
@@ -173,4 +197,68 @@ i {
   height: 20px;
   align-items: center;
   justify-content: center;
+}
+a {
+  display: block;
+  /* color: #1264a3; */
+  text-decoration: none;
+  background: none;
+  border: 0;
+  color: inherit;
+  font: inherit;
+  margin: 0;
+  line-height: inherit;
+  overflow: initial;
+  padding: 0;
+  text-align: initial;
+  vertical-align: initial;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 20px;
+  color: #616061;
+  margin: 20px;
+  display: flex;
+  align-items: center;
+  margin-right: 40px;
+  font-size: 14px;
+  line-height: 20px;
+  color: #616061;
+  margin: 20px;
+  display: flex;
+  align-items: center;
+}
+.margin_right_50 {
+  margin-right: 8px;
+}
+a:-webkit-any-link {
+  color: -webkit-link;
+  cursor: pointer;
+}
+.code_hint {
+  font-size: 14px;
+  line-height: 20px;
+  color: #454245;
+  margin-bottom: 16px;
+  display: block;
+  text-align: center;
+}
+.footer_text {
+  display: flex;
+  width: 100%;
+  align-content: center;
+  justify-content: center;
+  margin: 32px 0;
+  padding: 0;
+  border: none;
+  text-align: center;
+}
+.footer_link {
+  font-size: 15px;
+  line-height: 1.46668;
+  font-weight: 400;
+  color: #696969 !important;
+  margin-right: 16px;
+  font-weight: 500;
+  letter-spacing: -0.2px;
+  margin-bottom: 4px;
 }

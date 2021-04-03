@@ -1,4 +1,9 @@
-import { LOGIN_USER, REGISTER_USER, AUTH_USER } from "../_actions/types";
+import {
+  LOGIN_USER,
+  REGISTER_USER,
+  AUTH_USER,
+  SEND_EMAIL,
+} from "../_actions/types";
 
 export default function (state = {}, action) {
   switch (action.type) {
@@ -11,6 +16,9 @@ export default function (state = {}, action) {
 
     case AUTH_USER:
       return { ...state, userData: action.payload };
+
+    case SEND_EMAIL:
+      return { ...state, success: action.payload }; //success 쓰는게 맞는지
 
     default:
       return state;
