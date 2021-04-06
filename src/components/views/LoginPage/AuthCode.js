@@ -1,15 +1,56 @@
 import React, { useState } from "react";
 import { withRouter } from "react-router";
+import { codeCheck } from "../../../_actions/user_action";
+import { useDispatch } from "react-redux";
 import "./AuthCode.css";
 
-// class AuthCode extends React.Component {
-//   render() {
 function AuthCode(props) {
-  const [value, setValue] = useState("");
-  const onChange = (event) => {
-    setValue(event.target.value);
-  };
+  const dispatch = useDispatch();
+  const [value1, setValue1] = useState("");
+  const [value2, setValue2] = useState("");
+  const [value3, setValue3] = useState("");
+  const [value4, setValue4] = useState("");
+  const [value5, setValue5] = useState("");
+  const [value6, setValue6] = useState("");
 
+  const onChange1 = (event) => {
+    setValue1(event.target.value);
+    console.log("value", value1);
+  };
+  const onChange2 = (event) => {
+    setValue2(event.target.value);
+    console.log("value", value2);
+  };
+  const onChange3 = (event) => {
+    setValue3(event.target.value);
+    console.log("value", value3);
+  };
+  const onChange4 = (event) => {
+    setValue4(event.target.value);
+    console.log("value", value4);
+  };
+  const onChange5 = (event) => {
+    setValue5(event.target.value);
+    console.log("value", value5);
+  };
+  const onChange6 = (event) => {
+    setValue6(event.target.value6);
+    console.log("value", value6);
+  };
+  const onSubmitHandler = (event) => {
+    event.preventDefault();
+    let body = {
+      //  body부분 추가해야함
+    };
+
+    dispatch(codeCheck(body)).then((response) => {
+      if (response.payload) {
+        props.history.push("/mainpage");
+      } else {
+        alert("error");
+      }
+    });
+  };
   return (
     <section>
       <header>
@@ -45,8 +86,8 @@ function AuthCode(props) {
                     maxLength="1"
                     aria-label="6의 숫자 1"
                     aria-disabled="false"
-                    value={value}
-                    onChange={onChange}
+                    value={value1}
+                    onChange={onChange1}
                   ></input>
                 </div>
                 <div className="split_input_item">
@@ -55,8 +96,8 @@ function AuthCode(props) {
                     maxLength="1"
                     aria-label="6의 숫자 2"
                     aria-disabled="false"
-                    value={value}
-                    onChange={onChange}
+                    value={value2}
+                    onChange={onChange2}
                   ></input>
                 </div>
                 <div className="split_input_item">
@@ -65,8 +106,8 @@ function AuthCode(props) {
                     maxLength="1"
                     aria-label="6의 숫자 3"
                     aria-disabled="false"
-                    value={value}
-                    onChange={onChange}
+                    value={value3}
+                    onChange={onChange3}
                   ></input>
                 </div>
               </div>
@@ -78,8 +119,8 @@ function AuthCode(props) {
                     maxLength="1"
                     aria-label="6의 숫자 4"
                     aria-disabled="false"
-                    value={value}
-                    onChange={onChange}
+                    value={value4}
+                    onChange={onChange4}
                   ></input>
                 </div>
                 <div className="split_input_item">
@@ -88,8 +129,8 @@ function AuthCode(props) {
                     maxLength="1"
                     aria-label="6의 숫자 5"
                     aria-disabled="false"
-                    value={value}
-                    onChange={onChange}
+                    value={value5}
+                    onChange={onChange5}
                   ></input>
                 </div>
                 <div className="split_input_item">
@@ -98,8 +139,8 @@ function AuthCode(props) {
                     maxLength="1"
                     aria-label="6의 숫자 6"
                     aria-disabled="false"
-                    value={value}
-                    onChange={onChange}
+                    value={value6}
+                    onChange={onChange6}
                   ></input>
                 </div>
               </div>
@@ -114,7 +155,6 @@ function AuthCode(props) {
                 </p>
               </div>
             </div>
-            console.log(value);
           </fieldset>
           <br></br>
         </div>
