@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { Googletoken } from "../../../_actions/user_action";
 
-function Google(props) {
+function GoogleLogin(props) {
   const googleLoginBtn = useRef(null);
   const [token, setToken] = useState("");
   const dispatch = useDispatch(); // dispatch 사용 (redux)
@@ -81,4 +81,4 @@ function Google(props) {
   );
 }
 
-export default withRouter(Google);
+export default withRouter(GoogleLogin);

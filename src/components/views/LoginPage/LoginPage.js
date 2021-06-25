@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { loginUser, sendEmail } from "../../../_actions/user_action";
-import axios from "axios";
+import { sendEmail } from "../../../_actions/user_action";
 import "./Login.css";
 import { withRouter } from "react-router-dom";
+import GoogleLogin from "./GoogleLogin.js";
 
 function LoginPage(props) {
   const dispatch = useDispatch(); // dispatch 사용 (redux)
@@ -35,6 +35,35 @@ function LoginPage(props) {
   };
 
   return (
+    <div className="login">
+    {/*로그인로고*/}
+    <div>
+      <img
+        src="https://a.slack-edge.com/bv1-9/slack_logo-ebd02d1.svg"
+        className="loginlogo"
+        alt="Slack"
+      />
+    </div>
+    <br></br>
+    <br></br>
+    <div className="loginheader">Slack에 로그인</div>
+    <br></br>
+    <div className="logintext">
+      로그인하려면 사용하는 Google계정이나 이메일 주소로 계속해 주세요.
+    </div>
+    <br></br>
+    <br></br>
+    <br></br>
+    {/* 구글로그인 버튼 */}
+
+    <div className="googleLogin">
+      {/* <GoogleButton /> */}
+      <GoogleLogin />
+    </div>
+
+    <br></br>
+    <div className="hr-sect">또는</div>
+    <br></br>
     <div>
       <form onSubmit={onSubmitHandler}>
         <input
@@ -54,6 +83,11 @@ function LoginPage(props) {
         </button>
       </form>
     </div>
+    <div className="log-subtext">
+      비밀번호 없이 로그인할 수 있도록 매직 코드를 이메일로 보내드립니다.
+      아니면 수동으로 로그인하셔도 됩니다.
+    </div>
+  </div>
   );
 }
 export default withRouter(LoginPage);
