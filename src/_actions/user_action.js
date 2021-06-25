@@ -1,7 +1,14 @@
 import axios from "axios";
-import { LOGIN_USER, REGISTER_USER, AUTH_USER } from "./types";
+import {
+  LOGIN_USER,
+  REGISTER_USER,
+  AUTH_USER,
+  SEND_EMAIL,
+  CODE_CHECK,
+} from "./types";
 
 export function loginUser(dataTosubmit) {
+  console.log("data to submit: ", { dataTosubmit });
   const request = axios
     .post("/api/login", dataTosubmit)
     .then((response) => response.data);
@@ -26,7 +33,6 @@ export function registerUser(dataTosubmit) {
 
 export function auth() {
   const request = axios.get("/api/auth").then((response) => response.data);
-
   return {
     type: AUTH_USER,
     payload: request,
@@ -34,16 +40,38 @@ export function auth() {
 }
 
 export function Googletoken(dataTosubmit) {
-  const request = axios.post(
-      "/api/auth/login/oauth2/code/google",
-      dataTosubmit, {
-        headers: { "Content-Type": `application/json`}
+  const request = axios
+    .post("/api/auth/login/oauth2/code/google", dataTosubmit, {
+      headers: { "Content-Type": `application/json` },
     })
     .then((response) => response.data);
 
   console.log(request);
   return {
     type: LOGIN_USER,
+    payload: request,
+  };
+}
+export function sendEmail(dataTosubmit) {
+  const result = true;
+  const request = axios
+    .post("/api/email", dataTosubmit)
+    .then((response) => result);
+
+  return {
+    type: SEND_EMAIL,
+    payload: request,
+  };
+}
+
+export function codeCheck(dataTosubmit) {
+  const result = true;
+  const request = axios
+    .post("/api/email/verify-code", dataTosubmit)
+    .then((response) => result);
+
+  return {
+    type: CODE_CHECK,
     payload: request,
   };
 }

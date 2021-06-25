@@ -1,6 +1,9 @@
 import React, { useEffect } from "react";
 import axios from "axios";
 import { withRouter } from "react-router-dom";
+import GoogleButton from "../LoginPage/GoogleButton";
+import LoginPage from "../LoginPage/LoginPage";
+import { bindActionCreators } from "redux";
 
 function MainPage(props) {
   useEffect(() => {

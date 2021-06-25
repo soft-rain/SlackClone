@@ -1,83 +1,93 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { loginUser } from "../../../_actions/user_action";
+import { sendEmail } from "../../../_actions/user_action";
+import "./Login.css";
 import { withRouter } from "react-router-dom";
+import GoogleLogin from "./GoogleLogin.js";
 
 function LoginPage(props) {
-  // const dispatch = useDispatch(); // dispatch 사용 (redux)
-
+  const dispatch = useDispatch(); // dispatch 사용 (redux)
   // 이메일을 위한 state, 비밀번호를 위한 state 생성
   const [Email, setEmail] = useState(""); // 초깃값 : 빈 string
   // useState 입력 -> 자동완성
-  const [Password, setPassword] = useState("");
 
   const onEmailHandler = (event) => {
     setEmail(event.currentTarget.value); // Email의 state을 변경
   };
-
-  const onPasswordHandler = (event) => {
-    setPassword(event.currentTarget.value);
-  };
-
+  // const onPasswordHandler = (event) => {
+  //   setPassword(event.currentTarget.value);
+  // };
   const onSubmitHandler = (event) => {
     event.preventDefault(); // 안하면 누를 때마다 refresh된다. 뒤에 해야할 일들을 할 수가 없다.
-
     console.log("Email", Email);
-    console.log("Password", Password);
-
     let body = {
       email: Email,
-      password: Password,
     };
 
-    loginUser(body) // actions > user_action.js의 loginUser 호출
+    dispatch(sendEmail(body)) // actions > user_action.js의 loginUser 호출
       .then((response) => {
-        if (response.payload.loginSuccess) {
-          props.history.push("/");
+        if (response.payload) {
+          props.history.push("/authcode");
         } else {
           alert("error");
         }
       });
-    // .then(response => {
-    //     if(response.payload.loginSuccess){
-    //         props.history.push('/'); // 페이지 이동
-    //     }else{
-    //         alert('error!');
-    //     }
-    // });
-
-    // axios.post('/api/login', body) // redux 아닌 경우이다. 지금은 user_action.js로 이동
-    // .then(response => {
-
-    // })
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        width: "100%",
-        height: "100vh",
-      }}
-    >
-      <form
-        style={{ display: "flex", flexDirection: "column" }}
-        onSubmit={onSubmitHandler}
-      >
-        <label>Email</label>
-        {/* typing을 할 때 onChange라는 이벤트를 발생시켜서 state을 바꾸도록 하여, value를 바꾸도록 함.
-                    Handler를 넣어야 입력이 가능 */}
-        <input type="email" value={Email} onChange={onEmailHandler} />
-        <label>Password</label>
-        <input type="password" value={Password} onChange={onPasswordHandler} />
+    <div className="login">
+    {/*로그인로고*/}
+    <div>
+      <img
+        src="https://a.slack-edge.com/bv1-9/slack_logo-ebd02d1.svg"
+        className="loginlogo"
+        alt="Slack"
+      />
+    </div>
+    <br></br>
+    <br></br>
+    <div className="loginheader">Slack에 로그인</div>
+    <br></br>
+    <div className="logintext">
+      로그인하려면 사용하는 Google계정이나 이메일 주소로 계속해 주세요.
+    </div>
+    <br></br>
+    <br></br>
+    <br></br>
+    {/* 구글로그인 버튼 */}
 
+    <div className="googleLogin">
+      {/* <GoogleButton /> */}
+      <GoogleLogin />
+    </div>
+
+    <br></br>
+    <div className="hr-sect">또는</div>
+    <br></br>
+    <div>
+      <form onSubmit={onSubmitHandler}>
+        <input
+          className="emailinput"
+          placeholder="name@work-email.com"
+          type="email"
+          value={Email}
+          onChange={onEmailHandler}
+        />
         <br />
-        <button>Login</button>
+        <button
+          onSubmit={onSubmitHandler}
+          type="submit"
+          className="loginbutton"
+        >
+          이메일로 로그인
+        </button>
       </form>
     </div>
+    <div className="log-subtext">
+      비밀번호 없이 로그인할 수 있도록 매직 코드를 이메일로 보내드립니다.
+      아니면 수동으로 로그인하셔도 됩니다.
+    </div>
+  </div>
   );
 }
-
 export default withRouter(LoginPage);

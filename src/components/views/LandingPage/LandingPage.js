@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import axios from "axios";
 import { withRouter } from "react-router-dom";
-import Login from "../LoginPage/Login";
+import LoginPage from "../LoginPage/LoginPage";
 
 function LandingPage(props) {
   useEffect(() => {
@@ -31,7 +31,7 @@ function LandingPage(props) {
         height: "100vh",
       }}
     >
-      <Login />
+      <LoginPage />
       {/* <h2>시작 페이지</h2> */}
 
       {/* <button onClick={onClickHandler}>로그아웃</button> */}
