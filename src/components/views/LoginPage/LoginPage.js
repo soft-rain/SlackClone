@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { sendEmail } from "../../../_actions/user_action";
 import "./Login.css";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link} from "react-router-dom";
 import GoogleLogin from "./GoogleLogin.js";
-
+import GoogleButton from "./GoogleButton";
 function LoginPage(props) {
   const dispatch = useDispatch(); // dispatch 사용 (redux)
   // 이메일을 위한 state, 비밀번호를 위한 state 생성
@@ -57,8 +57,8 @@ function LoginPage(props) {
     {/* 구글로그인 버튼 */}
 
     <div className="googleLogin">
-      {/* <GoogleButton /> */}
-      <GoogleLogin />
+      <GoogleButton />
+      {/* <GoogleLogin /> */}
     </div>
 
     <br></br>
@@ -74,13 +74,14 @@ function LoginPage(props) {
           onChange={onEmailHandler}
         />
         <br />
-        <button
+        <Link to="/authcode"><button
           onSubmit={onSubmitHandler}
           type="submit"
           className="loginbutton"
         >
           이메일로 로그인
-        </button>
+        </button></Link>
+        
       </form>
     </div>
     <div className="log-subtext">
