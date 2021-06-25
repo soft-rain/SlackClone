@@ -38,7 +38,7 @@
   border: 2px solid #4285f4;
   color: black;
   margin-left: 30%;
-  width: 40%;
+  width: 40vw;
   box-sizing: border-box;
   box-shadow: none;
 }
@@ -52,7 +52,7 @@ button {
   border: 2px solid #4285f4;
   color: red;
   margin-left: 30%;
-  width: 40%;
+  width: 40vw;
   height: 44px;
   box-sizing: border-box;
   box-shadow: none;
@@ -104,7 +104,7 @@ input {
   height: 44px;
   margin-bottom: 20px;
 }
-.log-subtext {
+.log-subtext{
   display: flex;
   padding: 12px 24px;
   color: rgba(var(--sk_foreground_max_solid, 97, 96, 97), 1);
@@ -124,9 +124,27 @@ input {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
 }
+.log-subtext1{
+  color: rgba(var(--sk_foreground_max_solid, 97, 96, 97), 1);
+  font-size: 15px;
+  color: #1d1c1d;
+
+}
+.log-subtext2 {
+  font-size: 15px bold;
+  font-weight: bolder;
+  color: #1264a3;
+  display:inherit;
+  margin:0 auto;
+
+}
 .buttonText {
   font-size: 18px;
   color: #4285f4;
   font-weight: 800;
   text-align: right;
+}
+.mainfooter{
+  display:flex;
+justify-content: center;
 }
