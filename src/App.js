@@ -29,8 +29,8 @@ function App() {
             2. true: 로그인한 유저만 출입이 가능한 페이지
             3. false: 로그인한 유저는 출입 불가능한 페이지
           */}
-          <Route exact path="/" component={Auth(LandingPage, null)} />
-          <Route exact path="/login" component={Auth(LoginPage, false)} />
+          <Route exact path="/" component={Auth(LoginPage, null)} />
+          <Route exact path="/landing" component={Auth(LandingPage, false)} />
           <Route exact path="/register" component={Auth(RegisterPage, false)} />
           <Route exact path="/authcode" component={Auth(AuthCode, null)} />
 
