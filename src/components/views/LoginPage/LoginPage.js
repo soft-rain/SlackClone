@@ -73,7 +73,7 @@ function LoginPage(props) {
             value={Email}
             onChange={onEmailHandler}
           />
-          <br />
+          <br></br>
           <Link to="/authcode">
             <button
               onSubmit={onSubmitHandler}

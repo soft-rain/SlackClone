@@ -45,19 +45,20 @@
 .gSignInWrapper {
   width: 40%;
   display: block;
-
-  background-color: white;
   border: none;
+  background-color: white;
   margin: 0 auto;
 }
 .customGPlusSignIn {
   height: 42px;
   display: block;
+  border: gray 0.5px solid;
+
   border-radius: 2px;
   box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.25);
 }
 .google-icon {
-  margin-top: 11px;
+  margin-top: 10px;
   margin-right: 11px;
   width: 24px;
   height: 24px;
@@ -145,7 +146,7 @@ input {
   margin: 0 auto;
 }
 .buttonText {
-  margin: 11px 11px 0 0;
+  margin: 7px 11px 0 0;
   color: #4285f4;
   font-size: 20px;
   text-align: center;

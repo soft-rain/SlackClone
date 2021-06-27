@@ -64,19 +64,13 @@ function LoginwGoogle(props) {
     console.log(body);
     dispatch(Googletoken(body)).then((response) => {
       if (response.payload) {
-        props.history.push("/landing"); //이동할 페이지
+        props.history.push("/workspace"); //이동할 페이지
       } else {
         alert("error");
       }
     });
   };
   return (
-    // <button className="gSignInWrapper">
-    //   {/* <span className="label" /> */}
-    //   <div ref={googleLoginBtn} id="customBtn" className="customGPlusSignIn">
-
-    //   </div>
-    // </button>
     <button className="gSignInWrapper">
       <div ref={googleLoginBtn} className="customGPlusSignIn">
         <div className="login-con">
