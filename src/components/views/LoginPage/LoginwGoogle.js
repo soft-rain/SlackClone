@@ -5,7 +5,7 @@ import { Googletoken } from "../../../_actions/user_action";
 
 function LoginwGoogle(props) {
   const googleLoginBtn = useRef(null);
-  const [token, setToken] = useState("");
+  // const [token, setToken] = useState("");
   const dispatch = useDispatch(); // dispatch 사용 (redux)
 
   useEffect(() => {
@@ -58,7 +58,7 @@ function LoginwGoogle(props) {
   //백엔드로 token 보내기
   const sendToken = (googletoken) => {
     let body = {
-      access_token: googletoken,
+      accessToken: googletoken,
     };
 
     console.log(body);

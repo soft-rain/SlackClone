@@ -4,7 +4,7 @@ import { sendEmail } from "../../../_actions/user_action";
 import "./Login.css";
 import { withRouter, Link } from "react-router-dom";
 import LoginwGoogle from "./LoginwGoogle.js";
-import GoogleButton from "./GoogleButton";
+// import GoogleButton from "./GoogleButton";
 function LoginPage(props) {
   const dispatch = useDispatch(); // dispatch 사용 (redux)
   // 이메일을 위한 state, 비밀번호를 위한 state 생성
