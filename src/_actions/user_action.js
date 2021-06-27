@@ -39,21 +39,41 @@ export function auth() {
   };
 }
 
-export function Googletoken(dataTosubmit) {
-  const request = axios
-    // .post("/api/auth/login/oauth2/code/google", dataTosubmit, {
-    .post("http://172.30.1.2:8080/api/member/login/google", dataTosubmit, {
-      headers: { "Content-Type": `application/json` },
-    })
-    .then((response) => response.data);
+export async function Googletoken(dataTosubmit) {
+  try {
+    // const request = axios
+    //   // .post("/api/auth/login/oauth2/code/google", dataTosubmit, {
+    //   .post("http://172.30.1.52:8080/api/member/login/google", dataTosubmit, {
+    //     headers: { "Content-Type": `application/json` },
+    //   })
+    //   .then((response) => response.data);
 
-  console.log(request);
+    // console.log(request);
 
-  return {
-    type: LOGIN_USER,
-    payload: request,
-  };
+    // return {
+    //   type: LOGIN_USER,
+    //   payload: request,
+    // };
+    const request = await axios.post(
+      "http://172.30.1.52:8080/api/member/login/google",
+      dataTosubmit,
+      {
+        headers: { "Content-Type": `application/json` },
+      }
+    );
+    sessionStorage.setItem("accessToken", request.data.data.accessToken); //서버로부터 받은 accessToken을 sessionStorage에 저장함
+    console.log(request.data.data.accessToken);
+    console.log(request.status); //200이면 성공, 400이면 실패
+    console.log(sessionStorage.getItem("accessToken"));
+    return {
+      type: LOGIN_USER,
+      payload: request,
+    };
+  } catch (error) {
+    console.log(error);
+  }
 }
+
 export function sendEmail(dataTosubmit) {
   const result = true;
   const request = axios
