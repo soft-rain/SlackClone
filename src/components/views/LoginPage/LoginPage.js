@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { sendEmail } from "../../../_actions/user_action";
 import "./Login.css";
-import { withRouter, Link} from "react-router-dom";
-import GoogleLogin from "./GoogleLogin.js";
+import { withRouter, Link } from "react-router-dom";
+import LoginwGoogle from "./LoginwGoogle.js";
 import GoogleButton from "./GoogleButton";
 function LoginPage(props) {
   const dispatch = useDispatch(); // dispatch 사용 (redux)
@@ -36,71 +36,73 @@ function LoginPage(props) {
 
   return (
     <div className="login">
-    {/*로그인로고*/}
-    <div>
-      <img
-        src="https://a.slack-edge.com/bv1-9/slack_logo-ebd02d1.svg"
-        className="loginlogo"
-        alt="Slack"
-      />
-    </div>
-    <br></br>
-    <br></br>
-    <div className="loginheader">Slack에 로그인</div>
-    <br></br>
-    <div className="logintext">
-      로그인하려면 사용하는 Google계정이나 이메일 주소로 계속해 주세요.
-    </div>
-    <br></br>
-    <br></br>
-    <br></br>
-    {/* 구글로그인 버튼 */}
-
-    <div className="googleLogin">
-      <GoogleButton />
-      {/* <GoogleLogin /> */}
-    </div>
-
-    <br></br>
-    <div className="hr-sect">또는</div>
-    <br></br>
-    <div>
-      <form onSubmit={onSubmitHandler}>
-        <input
-          className="emailinput"
-          placeholder="name@work-email.com"
-          type="email"
-          value={Email}
-          onChange={onEmailHandler}
+      {/*로그인로고*/}
+      <div>
+        <img
+          src="https://a.slack-edge.com/bv1-9/slack_logo-ebd02d1.svg"
+          className="loginlogo"
+          alt="Slack"
         />
-        <br />
-        <Link to="/authcode"><button
-          onSubmit={onSubmitHandler}
-          type="submit"
-          className="loginbutton"
-        >
-          이메일로 로그인
-        </button></Link>
-        
-      </form>
-    </div>
-    <div className="log-subtext"><span className="log-subtext1">
-      비밀번호 없이 로그인할 수 있도록 매직 코드를 이메일로 보내드립니다.
-      아니면 <a className="log-subtext2">수동으로 로그인</a>하셔도 됩니다.
-    </span></div>
-    
-    <div>
+      </div>
       <br></br>
-    </div>
-    <div>
-      <footer class="mainfooter">
-        <a class="privacy">개인정보 보호 및 약관</a>
-        <a class="ask">문의하기</a>
-        <a class="changeregion">지역 변경</a>
+      <br></br>
+      <div className="loginheader">Slack에 로그인</div>
+      <br></br>
+      <div className="logintext">
+        로그인하려면 사용하는 Google계정이나 이메일 주소로 계속해 주세요.
+      </div>
+      <br></br>
+      <br></br>
+      <br></br>
+      {/* 구글로그인 버튼 */}
 
-      </footer>
+      <div className="googleLogin">
+        {/* <GoogleButton /> */}
+        <LoginwGoogle />
+      </div>
+
+      <br></br>
+      <div className="hr-sect">또는</div>
+      <br></br>
+      <div>
+        <form onSubmit={onSubmitHandler}>
+          <input
+            className="emailinput"
+            placeholder="name@work-email.com"
+            type="email"
+            value={Email}
+            onChange={onEmailHandler}
+          />
+          <br />
+          <Link to="/authcode">
+            <button
+              onSubmit={onSubmitHandler}
+              type="submit"
+              className="loginbutton"
+            >
+              이메일로 로그인
+            </button>
+          </Link>
+        </form>
+      </div>
+      <div className="log-subtext">
+        <span className="log-subtext1">
+          비밀번호 없이 로그인할 수 있도록 매직 코드를 이메일로 보내드립니다.
+          아니면 <a className="log-subtext2">수동으로 로그인</a>하셔도 됩니다.
+        </span>
+      </div>
+
+      <div>
+        <br></br>
+      </div>
+      <div>
+        <footer class="mainfooter">
+          <a class="privacy">개인정보 보호 및 약관</a>
+          <a class="ask">문의하기</a>
+          <a class="changeregion">지역 변경</a>
+        </footer>
+      </div>
     </div>
-  </div>
   );
 }
 export default withRouter(LoginPage);

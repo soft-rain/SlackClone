@@ -42,20 +42,25 @@
   box-sizing: border-box;
   box-shadow: none;
 }
-
-button {
-  text-align: center;
+.gSignInWrapper {
+  width: 40%;
   display: block;
-  background-color: #fff;
-  border-radius: 3px;
-  background: white;
-  border: 2px solid #4285f4;
-  color: red;
-  margin-left: 30%;
-  width: 40vw;
-  height: 44px;
-  box-sizing: border-box;
-  box-shadow: none;
+
+  background-color: white;
+  border: none;
+  margin: 0 auto;
+}
+.customGPlusSignIn {
+  height: 42px;
+  display: block;
+  border-radius: 2px;
+  box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.25);
+}
+.google-icon {
+  margin-top: 11px;
+  margin-right: 11px;
+  width: 24px;
+  height: 24px;
 }
 .hr-sect {
   display: flex;
@@ -104,7 +109,10 @@ input {
   height: 44px;
   margin-bottom: 20px;
 }
-.log-subtext{
+.login-con {
+  display: inline-flex;
+}
+.log-subtext {
   display: flex;
   padding: 12px 24px;
   color: rgba(var(--sk_foreground_max_solid, 97, 96, 97), 1);
@@ -124,27 +132,28 @@ input {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
 }
-.log-subtext1{
+.log-subtext1 {
   color: rgba(var(--sk_foreground_max_solid, 97, 96, 97), 1);
   font-size: 15px;
   color: #1d1c1d;
-
 }
 .log-subtext2 {
   font-size: 15px bold;
   font-weight: bolder;
   color: #1264a3;
-  display:inherit;
-  margin:0 auto;
-
+  display: inherit;
+  margin: 0 auto;
 }
 .buttonText {
-  font-size: 18px;
+  margin: 11px 11px 0 0;
   color: #4285f4;
+  font-size: 20px;
+  text-align: center;
   font-weight: 800;
-  text-align: right;
+  letter-spacing: 0.2px;
+  font-family: "Roboto";
 }
-.mainfooter{
-  display:flex;
-justify-content: center;
+.mainfooter {
+  display: flex;
+  justify-content: center;
 }

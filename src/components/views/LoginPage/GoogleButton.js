@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { GoogleLogin, GoogleLogout } from "react-google-login";
-
+import { Link } from "react-router-dom";
 const CLIENT_ID =
   "1063116453176-lmh4k8kiinpm3ftp34vs05j3d180tni9.apps.googleusercontent.com";
 
@@ -65,7 +65,7 @@ class GoogleButton extends Component {
         )}
         {this.state.accessToken ? (
           <h5>
-            Your Access Token: <br />
+            구글로그인 Your Access Token: <br />
             <br /> {this.state.accessToken}
           </h5>
         ) : null}

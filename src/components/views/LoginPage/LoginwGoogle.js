@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { Googletoken } from "../../../_actions/user_action";
 
-function GoogleLogin(props) {
+function LoginwGoogle(props) {
   const googleLoginBtn = useRef(null);
   const [token, setToken] = useState("");
   const dispatch = useDispatch(); // dispatch 사용 (redux)
@@ -64,21 +64,31 @@ function GoogleLogin(props) {
     console.log(body);
     dispatch(Googletoken(body)).then((response) => {
       if (response.payload) {
-        props.history.push("/");
+        props.history.push("/landing"); //이동할 페이지
       } else {
         alert("error");
       }
     });
   };
   return (
-    <button id="gSignInWrapper">
-      <span className="label" />
-      <div ref={googleLoginBtn} id="customBtn" className="customGPlusSignIn">
-        <span className="icon"></span>
-        <span className="buttonText">Login with Google</span>
+    // <button className="gSignInWrapper">
+    //   {/* <span className="label" /> */}
+    //   <div ref={googleLoginBtn} id="customBtn" className="customGPlusSignIn">
+
+    //   </div>
+    // </button>
+    <button className="gSignInWrapper">
+      <div ref={googleLoginBtn} className="customGPlusSignIn">
+        <div className="login-con">
+          <img
+            className="google-icon"
+            src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
+          ></img>
+          <div className="buttonText">Login with Google</div>
+        </div>
       </div>
     </button>
   );
 }
 
-export default withRouter(GoogleLogin);
+export default withRouter(LoginwGoogle);
