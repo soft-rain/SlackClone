@@ -41,7 +41,8 @@ export function auth() {
 
 export function Googletoken(dataTosubmit) {
   const request = axios
-    .post("/api/auth/login/oauth2/code/google", dataTosubmit, {
+    // .post("/api/auth/login/oauth2/code/google", dataTosubmit, {
+    .post("/api/member/login/google", dataTosubmit, {
       headers: { "Content-Type": `application/json` },
     })
     .then((response) => response.data);
