@@ -102,7 +102,7 @@
   background-color: white;
 }
 .main-workspace {
-  background-color: khaki;
+  /* background-color: khaki; */
   display: flex;
   width: 100%;
   height: 100%;
@@ -124,7 +124,9 @@
   height: 100%;
   display: block;
   width: 80%;
-  background-color: goldenrod;
+  border: 2px solid orangered;
+  /* 임시 */
+  /* background-color: goldenrod; */
 }
 .send-message-box {
   display: block;
