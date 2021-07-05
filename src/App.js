@@ -6,7 +6,7 @@ import AuthCode from "./components/views/LoginPage/AuthCode";
 import LoginPage from "./components/views/LoginPage/LoginPage";
 import RegisterPage from "./components/views/RegisterPage/RegisterPage";
 import Auth from "./hoc/auth";
-import Workspace from "./components/views/Workspace";
+import Workspaces from "./components/views/Workspace";
 function App() {
   return (
     <Router>
@@ -32,7 +32,7 @@ function App() {
           <Route exact path="/" component={Auth(LoginPage, null)} />
           <Route exact path="/landing" component={Auth(LandingPage, false)} />
           {/* <Route exact path="/landing" component={LandingPage} /> */}
-          <Route exact path="/workspace" component={Workspace} />
+          <Route exact path="/workspaces" component={Workspaces} />
           <Route exact path="/register" component={Auth(RegisterPage, false)} />
           <Route exact path="/authcode" component={Auth(AuthCode, null)} />
 

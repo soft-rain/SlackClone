@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Workspace.css";
+import { workspaceAuth } from "../../_actions/user_action";
 
 export default function Workspace() {
   return (
@@ -23,8 +24,8 @@ export default function Workspace() {
           <div className="profile-wrap">
             <img //여기는 추후에 구글 계정 프로필 받고 수정해야함!
               className="profile-icon"
-              src="https://ca.slack-edge.com/T01Q7MA3XGR-U01PE9HCWH5-gf381af91724-32"
-              srcset="https://ca.slack-edge.com/T01Q7MA3XGR-U01PE9HCWH5-gf381af91724-72 2x"
+              // src={workspaceAuth().data.workspaceMemberList[0].member.picture}
+              // srcSet="https://ca.slack-edge.com/T01Q7MA3XGR-U01PE9HCWH5-gf381af91724-72 2x"
               aria-hidden="true"
               role="img"
               alt=""
@@ -46,12 +47,26 @@ export default function Workspace() {
               </div>
             </div>
           </div>
-          <div className="sub-bar2">#잡담</div>
+
+          <div className="sub-bar2">
+            {/* # {workspaceAuth().data.channelList[0].name} */}
+          </div>
         </div>
         <div className="main-workspace">
           <div className="side-bar">
-            menu-list
-            <div className="menu-list">menu1</div>
+            <div className="menu-list">
+              {/* {workspaceAuth().data.channelList[0].name} */}
+              <br></br>
+              {/* {workspaceAuth().data.channelList[1].name} */}
+            </div>
+            <div className="member-list">
+              <img
+                className="member-picture"
+                // src={workspaceAuth().data.workspaceMemberList[0].member.picture}
+                alt="profile-pic"
+              ></img>
+              {/* {memName()} */}
+            </div>
           </div>
           <div className="chat">
             chat-space

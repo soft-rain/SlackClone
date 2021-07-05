@@ -34,7 +34,6 @@ function LandingPage(props) {
       랜딩 페이지입니다.
       {/* <LoginPage /> */}
       {/* <h2>시작 페이지</h2> */}
-
       {/* <button onClick={onClickHandler}>로그아웃</button> */}
     </div>
   );

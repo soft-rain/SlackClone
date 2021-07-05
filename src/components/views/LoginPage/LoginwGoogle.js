@@ -64,7 +64,7 @@ function LoginwGoogle(props) {
     console.log(body);
     dispatch(Googletoken(body)).then((response) => {
       if (response.payload) {
-        props.history.push("/workspace"); //이동할 페이지
+        props.history.push("/workspaces"); //이동할 페이지
       } else {
         alert("error");
       }

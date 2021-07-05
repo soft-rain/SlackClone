@@ -55,7 +55,7 @@ export async function Googletoken(dataTosubmit) {
     //   payload: request,
     // };
     const request = await axios.post(
-      "http://172.30.1.52:8080/api/member/login/google",
+      "http://192.168.0.36:8080/api/member/login/google",
       dataTosubmit,
       {
         headers: { "Content-Type": `application/json` },
@@ -64,7 +64,7 @@ export async function Googletoken(dataTosubmit) {
     sessionStorage.setItem("accessToken", request.data.data.accessToken); //서버로부터 받은 accessToken을 sessionStorage에 저장함
     console.log(request.data.data.accessToken);
     console.log(request.status); //200이면 성공, 400이면 실패
-    console.log(sessionStorage.getItem("accessToken"));
+    // console.log(sessionStorage.getItem("accessToken"));
     return {
       type: LOGIN_USER,
       payload: request,
@@ -97,3 +97,44 @@ export function codeCheck(dataTosubmit) {
     payload: request,
   };
 }
+
+export async function workspaceAuth() {
+  // console.log(`${sessionStorage.getItem("accessToken")}`);
+  try {
+    const request = await axios
+      .get("/api/workspaces/1", {
+        headers: {
+          Authorization: sessionStorage.getItem("accessToken"),
+        },
+      })
+      .then((response) => {
+        console.log(response.data);
+      });
+
+    return {
+      payload: request,
+    };
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+// export function workspaceAuth() {
+//   // console.log(`${sessionStorage.getItem("accessToken")}`);
+//     const request = axios
+//       .get("/api/workspaces/2", {
+//         headers: {
+//           Authorization: sessionStorage.getItem("accessToken"),
+//         },
+//       })
+//       .then((response) => {
+//         console.log(response.data);
+//       });
+//       // if(error) {
+//       //   console.log(error);
+//       // }
+//     return {
+//       payload: request,
+//     };
+
+// }
