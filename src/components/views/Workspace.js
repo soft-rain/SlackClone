@@ -1,8 +1,31 @@
 import React, { useEffect, useState } from "react";
 import "./Workspace.css";
 import { workspaceAuth } from "../../_actions/user_action";
+import axios from "axios";
 
 export default function Workspace() {
+  // const [message, setMessage] = useState(null);
+  // async function workspaceAuth() {
+  //   // console.log(`${sessionStorage.getItem("accessToken")}`);
+  //   try {
+  //     const request = await axios
+  //       .get("/api/workspaces/1", {
+  //         headers: {
+  //           Authorization: sessionStorage.getItem("accessToken"),
+  //         },
+  //       })
+  //       .then((response) => {
+  //         setMessage(response.message);
+  //         console.log(message);
+  //       });
+
+  //     return {
+  //       payload: request,
+  //     };
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
   return (
     <div className="fullbox">
       <div className="top-bar">
@@ -25,6 +48,7 @@ export default function Workspace() {
             <img //여기는 추후에 구글 계정 프로필 받고 수정해야함!
               className="profile-icon"
               // src={workspaceAuth().data.workspaceMemberList[0].member.picture}
+
               // srcSet="https://ca.slack-edge.com/T01Q7MA3XGR-U01PE9HCWH5-gf381af91724-72 2x"
               aria-hidden="true"
               role="img"
@@ -49,6 +73,7 @@ export default function Workspace() {
           </div>
 
           <div className="sub-bar2">
+            {workspaceAuth().data.data.channelList[0].name}
             {/* # {workspaceAuth().data.channelList[0].name} */}
           </div>
         </div>
