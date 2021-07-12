@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { withRouter } from "react-router";
-import { codeCheck } from "../../../_actions/user_action";
-import { useDispatch } from "react-redux";
+// import { codeCheck } from "../../../_actions/user_action";
+// import { useDispatch } from "react-redux";
 import "./AuthCode.css";
 
 function AuthCode(props) {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const [value1, setValue1] = useState("");
   const [value2, setValue2] = useState("");
   const [value3, setValue3] = useState("");
@@ -37,20 +37,20 @@ function AuthCode(props) {
     setValue6(event.target.value6);
     console.log("value", value6);
   };
-  const onSubmitHandler = (event) => {
-    event.preventDefault();
-    let body = {
-      //  body부분 추가해야함
-    };
+  // const onSubmitHandler = (event) => {
+  //   event.preventDefault();
+  //   let body = {
+  //     //  body부분 추가해야함
+  //   };
 
-    dispatch(codeCheck(body)).then((response) => {
-      if (response.payload) {
-        props.history.push("/mainpage");
-      } else {
-        alert("error");
-      }
-    });
-  };
+  //   dispatch(codeCheck(body)).then((response) => {
+  //     if (response.payload) {
+  //       props.history.push("/mainpage");
+  //     } else {
+  //       alert("error");
+  //     }
+  //   });
+  // };
   return (
     <section>
       <header>

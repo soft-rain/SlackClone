@@ -1,8 +1,46 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./Workspace.css";
-import { workspaceAuth } from "../../_actions/user_action";
-
+import axios from "axios";
+const memberarr = [];
+const menuarr = [];
 export default function Workspace() {
+  const [message, setMessage] = useState("");
+  const [menu, setMenu] = useState("");
+  const [nickname, setNickname] = useState("");
+  const [profilepic, setProfilepic] = useState("");
+  axios
+    .get("api/workspaces/1", {
+      headers: {
+        Authorization: sessionStorage.getItem("accessToken"),
+      },
+    })
+    .then((response) => {
+      console.log(response.data);
+      setMessage(response.data.message);
+      for (var i = 0; i < response.data.data.workspaceMemberList.length; i++) {
+        if (response.data.data.workspaceMemberList[i] === undefined) break;
+        else {
+          memberarr.push(
+            <div>
+              {response.data.data.workspaceMemberList[i].member.nickname}
+            </div>
+          );
+        }
+        console.log(memberarr[i]);
+      }
+      setNickname(memberarr);
+
+      for (var i = 0; i < response.data.data.channelList.length; i++) {
+        if (response.data.data.channelList[i] === undefined) break;
+        else {
+          menuarr.push(<div>{response.data.data.channelList[i].name}</div>);
+        }
+        console.log(menuarr[i]);
+      }
+      setMenu(menuarr);
+      setProfilepic(response.data.data.workspaceMemberList[0].member.picture);
+    });
+
   return (
     <div className="fullbox">
       <div className="top-bar">
@@ -24,7 +62,7 @@ export default function Workspace() {
           <div className="profile-wrap">
             <img //여기는 추후에 구글 계정 프로필 받고 수정해야함!
               className="profile-icon"
-              // src={workspaceAuth().data.workspaceMemberList[0].member.picture}
+              src={profilepic}
               // srcSet="https://ca.slack-edge.com/T01Q7MA3XGR-U01PE9HCWH5-gf381af91724-72 2x"
               aria-hidden="true"
               role="img"
@@ -50,22 +88,23 @@ export default function Workspace() {
 
           <div className="sub-bar2">
             {/* # {workspaceAuth().data.channelList[0].name} */}
+
+            {message}
           </div>
         </div>
         <div className="main-workspace">
           <div className="side-bar">
             <div className="menu-list">
-              {/* {workspaceAuth().data.channelList[0].name} */}
+              {menu}
               <br></br>
-              {/* {workspaceAuth().data.channelList[1].name} */}
             </div>
             <div className="member-list">
               <img
                 className="member-picture"
-                // src={workspaceAuth().data.workspaceMemberList[0].member.picture}
+                src={profilepic}
                 alt="profile-pic"
               ></img>
-              {/* {memName()} */}
+              {nickname}
             </div>
           </div>
           <div className="chat">

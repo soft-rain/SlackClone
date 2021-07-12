@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import axios from "axios";
 import { withRouter } from "react-router-dom";
-import LoginPage from "../LoginPage/LoginPage";
+// import LoginPage from "../LoginPage/LoginPage";
 
 function LandingPage(props) {
   useEffect(() => {
@@ -10,16 +10,16 @@ function LandingPage(props) {
     });
   }, []);
 
-  const onClickHandler = () => {
-    axios.get("/api/logout").then((response) => {
-      console.log(response.data);
-      if (response.data.success) {
-        props.history.push("/login"); // react-router-dom 을 이용함
-      } else {
-        alert("Failed to logout");
-      }
-    });
-  };
+  // const onClickHandler = () => {
+  //   axios.get("/api/logout").then((response) => {
+  //     console.log(response.data);
+  //     if (response.data.success) {
+  //       props.history.push("/login"); // react-router-dom 을 이용함
+  //     } else {
+  //       alert("Failed to logout");
+  //     }
+  //   });
+  // };
 
   return (
     <div

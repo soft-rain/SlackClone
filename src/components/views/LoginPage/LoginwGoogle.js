@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { Googletoken } from "../../../_actions/user_action";
@@ -76,6 +76,7 @@ function LoginwGoogle(props) {
         <div className="login-con">
           <img
             className="google-icon"
+            alt=""
             src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
           ></img>
           <div className="buttonText">Login with Google</div>

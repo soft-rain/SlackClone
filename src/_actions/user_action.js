@@ -55,7 +55,7 @@ export async function Googletoken(dataTosubmit) {
     //   payload: request,
     // };
     const request = await axios.post(
-      "http://192.168.0.36:8080/api/member/login/google",
+      "http://90804cc2bd5f.ngrok.io/api/member/login/google",
       dataTosubmit,
       {
         headers: { "Content-Type": `application/json` },
@@ -98,26 +98,29 @@ export function codeCheck(dataTosubmit) {
   };
 }
 
-export async function workspaceAuth() {
-  // console.log(`${sessionStorage.getItem("accessToken")}`);
-  try {
-    const request = await axios
-      .get("/api/workspaces/1", {
-        headers: {
-          Authorization: sessionStorage.getItem("accessToken"),
-        },
-      })
-      .then((response) => {
-        console.log(response.data);
-      });
+// export async function workspaceAuth() {
+//   // console.log(`${sessionStorage.getItem("accessToken")}`);
 
-    return {
-      payload: request,
-    };
-  } catch (error) {
-    console.log(error);
-  }
-}
+//   try {
+//     const request = await axios
+//       .get("http://a40a0b62fa76.ngrok.io/api/workspaces/1", {
+//         headers: {
+//           Authorization: sessionStorage.getItem("accessToken"),
+//         },
+//       })
+//       .then((response) => {
+//         console.log(response.data);
+//         console.log(response.data.data.name);
+//         console.log(response.data.message);
+//       });
+
+//     return {
+//       payload: request,
+//     };
+//   } catch (error) {
+//     console.log(error);
+//   }
+// }
 
 // export function workspaceAuth() {
 //   // console.log(`${sessionStorage.getItem("accessToken")}`);
