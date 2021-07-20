@@ -38,10 +38,10 @@ export default function Workspace() {
       setNickname(memberarr);
       // setProfilepic(picarr);
       setUserpic(response.data.data.workspaceMemberList[0].member.picture);
-      for (var i = 0; i < response.data.data.channelList.length; i++) {
-        if (response.data.data.channelList[i] === undefined) break;
+      for (var j = 0; j < response.data.data.channelList.length; j++) {
+        if (response.data.data.channelList[j] === undefined) break;
         else {
-          menuarr.push(<div>{response.data.data.channelList[i].name}</div>);
+          menuarr.push(<div>{response.data.data.channelList[j].name}</div>);
         }
       }
       setMenu(menuarr);
@@ -82,13 +82,14 @@ export default function Workspace() {
           <div className="sub-bar1">
             <div className="sub-bar1-wrap">
               <div className="sub-bar1-text">슬클</div>
-              <div
+              <button
                 className="sub-bar1-down"
                 type="chevron-down"
                 aria-hidden="true"
+                onClick={onchange}
               >
                 ^
-              </div>
+              </button>
             </div>
           </div>
 
@@ -107,7 +108,9 @@ export default function Workspace() {
           </div>
           <div className="chat">
             chat-space
-            <div className="send-message-box">#일반에게 메시지 보내기 부분</div>
+            <div className="send-message-box">
+              #{menu[0]}에게 메시지 보내기 부분
+            </div>
           </div>
         </div>
       </div>
