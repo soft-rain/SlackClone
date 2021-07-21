@@ -5,7 +5,7 @@ module.exports = function (app) {
     "/api",
     createProxyMiddleware({
       // target: "https://slack-clone-0.herokuapp.com",
-      target: "http://da8f83b553c5.ngrok.io/",
+      target: "http://172.30.1.23:8080/",
       changeOrigin: true,
     })
   );
