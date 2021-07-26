@@ -55,7 +55,7 @@ export async function Googletoken(dataTosubmit) {
     //   payload: request,
     // };
     const request = await axios.post(
-      "http://172.30.1.23:8080/api/member/login/google",
+      "http://172.30.1.14:8080/api/member/login/google",
       dataTosubmit,
       {
         headers: { "Content-Type": `application/json` },

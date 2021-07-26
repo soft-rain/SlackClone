@@ -1,49 +1,79 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <title>Spring Boot WebSocket Chat Application</title>
-    <link rel="stylesheet" href="./Chat.css" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>채팅방</title>
+    <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="main.css" rel="stylesheet">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.min.js"></script>
+    <script src="/webjars/jquery/jquery.min.js"></script>
+    <script src="/webjars/sockjs-client/sockjs.min.js"></script>
+    <script src="/webjars/stomp-websocket/stomp.min.js"></script>
 </head>
 <body>
-
-<div id="username-page">
-    <div class="username-page-container">
-        <h1 class="title">username을 입력하세요</h1>
-        <form id="usernameForm" name="usernameForm">
-            <div class="form-group">
-                <input type="text" id="name" placeholder="Username" autocomplete="off" class="form-control" />
+<noscript>
+    <h2 style="color: #ff0000">Seems your browser doesn't support
+        Javascript! Websocket relies on Javascript being enabled. Please
+        enable Javascript and reload this page!</h2>
+</noscript>
+<div id="main-content" class="container">
+    <p>
+        <div class="row">
+            <div class="col-md-6">
+                <form class="form-inline">
+                    <div class="form-group">
+                        <label for="senderId">이름</label>
+                        <input type="text" id="senderId" class="form-control input-sm" placeholder="이름을 적어주세요">
+                    </div>
+                </form>
             </div>
-            <div class="form-group">
-                <button type="submit" class="accent username-submit">채팅 시작하기</button>
+            <div class="col-md-6"  align="right">
+                <form class="form-inline">
+                    <div class="form-group">
+                        <label for="connect">채팅</label>
+                        <button id="connect" class="btn btn-xs btn-danger" type="submit">ON</button>
+                        <button id="disconnect" class="btn btn-xs" type="submit"
+                                disabled="disabled">OFF
+                        </button>
+                    </div>
+                </form>
             </div>
-        </form>
-    </div>
-</div>
-
-<div id="chat-page" class="hidden">
-    <div class="chat-container">
-        <div class="chat-header">
-            <h2>Spring WebSocket Chat Demo</h2>
         </div>
-        <div class="connecting">
-            연결중...
-        </div>
-        <ul id="messageArea">
-
-        </ul>
-        <form id="messageForm" name="messageForm">
-            <div class="form-group">
-                <div class="input-group clearfix">
-                    <input type="text" id="message" placeholder="Type a message..." autocomplete="off" class="form-control"/>
-                    <button type="submit" class="primary">보내기</button>
+    </p>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="chat-panel panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-comments fa-fw"></i> Chat
                 </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <ul class="chat" id="chat">
+                    </ul>
+                </div>
+                <!-- /.panel-body -->
+                <div class="panel-footer">
+                    <form class="form">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input id="btn-input" type="text" class="form-control input-sm"
+                                       placeholder="메세지를 적어주세요" autocomplete="off">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-info btn-sm" id="btn-chat" type="submit">
+                                        Send
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.panel-footer -->
             </div>
-        </form>
+        </div>
     </div>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
-<script src="./Chat2.js"></script>
 </body>
+<script src="Chat2.js"></script>
 </html>

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "./Workspace.css";
 import axios from "axios";
-import Chat from "./chat";
 import Chat2 from "./Chat2";
+
 const memberarr = [];
 const menuarr = [];
 // const picarr = [];
