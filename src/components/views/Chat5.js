@@ -1,11 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 // import SockJS from "react-stomp";
 import SockJS from "sockjs-client";
 import { Stomp } from "@stomp/stompjs";
-
+import "./Chat5.css";
 var stompClient = null;
-
 function Chat5() {
+  const Form = () => {
+    const [message, setMessage] = useState("");
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      console.log(`Form submitted, ${message}`);
+    };
+    return (
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="메시지 입력"
+          className="msgForm"
+          onChange={(e) => setMessage(e.target.value)}
+        ></input>
+        <div>
+          <button
+            type="submit"
+            className="sendbutton"
+            onClick={(message) => sendMessage(message)}
+          >
+            Send
+          </button>
+        </div>
+      </form>
+    );
+  };
+
   // function setConnected(connected) {
   //   console.log("connected?");
   //   if (connected) {
@@ -45,7 +71,8 @@ function Chat5() {
           console.log("connect3");
         });
         //입장글
-        stompClient.send("/app/on", {}, JSON.stringify({ content: "아영" }));
+        stompClient.send("/app/on", {});
+
         console.log("connect4");
       }
     );
@@ -61,19 +88,23 @@ function Chat5() {
   }
   //메시지 전송
   function sendMessage(text) {
-    stompClient.send("/app/chat.1", {}, JSON.stringify({ sendMessage: text }));
+    stompClient.send("/app/chat.1", {}, JSON.stringify({ content: text }));
     console.log("send");
   }
   function printMessage(msg) {
-    return <div>{msg}</div>;
+    console.log("메시지: ", msg);
   }
   return (
     <div>
       <script src="Chat5.js"></script>
       <script src="http://cdn.sockjs.org/sockjs-0.3.min.js"></script>;
       <form>
-        <label>이름</label>
-        <input type="text" placeholder="이름을 적어주세요"></input>
+        <label className="username">이름</label>
+        <input
+          className="usernameForm"
+          type="text"
+          placeholder="이름을 적어주세요"
+        ></input>
       </form>
       <form>
         <div>
@@ -96,12 +127,7 @@ function Chat5() {
           </button>
         </div>
       </form>
-      <input type="text" placeholder="메시지 입력"></input>
-      <div>
-        <button type="submit" className="sendbutton" onClick={sendMessage}>
-          Send
-        </button>
-      </div>
+      <Form />
     </div>
   );
 }
