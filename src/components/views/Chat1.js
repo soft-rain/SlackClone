@@ -161,28 +161,28 @@ const Chat1 = () => {
       </div>
     );
   }
-  //   $(function () {
-  //     $("form").on("submit", function (e) {
-  //       e.preventDefault();
-  //     });
-  //     $("#connect").click(function () {
-  //       // 소켓 연결
-  //       console.log("전");
-  //       connect();
-  //       console.log("여기");
-  //     });
-  //     $("#disconnect").click(function () {
-  //       // 소켓 연결 끊음
-  //       disconnect();
-  //     });
-  //     $("#btn-chat").click(function () {
-  //       // 메시지 전달
+  $(function () {
+    $("form").on("submit", function (e) {
+      e.preventDefault();
+    });
+    $("#connect").click(function () {
+      // 소켓 연결
+      console.log("전");
+      connect();
+      console.log("여기");
+    });
+    $("#disconnect").click(function () {
+      // 소켓 연결 끊음
+      disconnect();
+    });
+    $("#btn-chat").click(function () {
+      // 메시지 전달
 
-  //       sendDetail();
-  //       console.log("send부분");
-  //       $("#btn-input").val("");
-  //     });
-  //   });
+      sendDetail();
+      console.log("send부분");
+      $("#btn-input").val("");
+    });
+  });
   return (
     <div>
       <script src="Chat1.js"></script>
@@ -213,23 +213,25 @@ const Chat1 = () => {
               <form className="form-inline">
                 <div className="form-group">
                   <label for="connect">채팅</label>
-                  <button
-                    id="connect"
-                    className="btn btn-xs btn-danger"
-                    type="submit"
-                    onClick={((e) => e.preventDefault(), connect)}
-                  >
-                    ON
-                  </button>
-                  <button
-                    id="disconnect"
-                    className="btn btn-xs"
-                    type="submit"
-                    disabled="disabled"
-                    onClick={disconnect}
-                  >
-                    OFF
-                  </button>
+                  <div>
+                    <button
+                      id="connect"
+                      className="btn btn-xs btn-danger"
+                      type="submit"
+                      onClick={((e) => e.preventDefault(), connect)}
+                    >
+                      ON
+                    </button>
+                    <button
+                      id="disconnect"
+                      className="btn btn-xs"
+                      type="submit"
+                      disabled="disabled"
+                      onClick={disconnect}
+                    >
+                      OFF
+                    </button>
+                  </div>
                 </div>
               </form>
             </div>
