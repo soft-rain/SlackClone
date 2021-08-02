@@ -88,7 +88,8 @@ function LoginPage(props) {
       <div className="log-subtext">
         <span className="log-subtext1">
           비밀번호 없이 로그인할 수 있도록 매직 코드를 이메일로 보내드립니다.
-          아니면 <a className="log-subtext2">수동으로 로그인</a>하셔도 됩니다.
+          아니면 <button className="log-subtext2">수동으로 로그인</button>하셔도
+          됩니다.
         </span>
       </div>
 
@@ -96,10 +97,10 @@ function LoginPage(props) {
         <br></br>
       </div>
       <div>
-        <footer class="mainfooter">
-          <a class="privacy">개인정보 보호 및 약관</a>
-          <a class="ask">문의하기</a>
-          <a class="changeregion">지역 변경</a>
+        <footer className="mainfooter">
+          <button className="privacy">개인정보 보호 및 약관</button>
+          <button className="ask">문의하기</button>
+          <button className="changeregion">지역 변경</button>
         </footer>
       </div>
     </div>

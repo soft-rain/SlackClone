@@ -7,7 +7,7 @@ import "./Chat.css";
 import $ from "jquery";
 var stompClient = null;
 
-const Chat2 = () => {
+const Chat1 = () => {
   function setConnected(connected) {
     console.log("connect?");
     $("#connect").prop("disabled", connected);
@@ -95,94 +95,97 @@ const Chat2 = () => {
   }
   function showDetail(message) {
     console.log("message :", message);
-    var html = "";
-    html += '<li className="left clearfix">';
-    html += '	<div className="chat-body clearfix">';
-    html += '		<div className="header">';
-    html +=
-      '		<strong className="pull-right primary-font">' +
-      message.sender.username +
-      "</strong>";
-    html += '		<small className="text-muted">';
-    html += '			<i className="fa fa-clock-o fa-fw"></i>' + message.sendDate;
-    html += "		</small>";
-    html += "	</div>";
-    html += "	<p>";
-    html += message.content;
-    html += "	</p>";
-    html += "	</div>";
-    html += "</li>";
-    $(".chat").append(html);
-    $(".panel-body").scrollTop($(".chat")[0].scrollHeight);
+    // $(".chat").append(html);
+    // $(".panel-body").scrollTop($(".chat")[0].scrollHeight);
+    return (
+      <div>
+        <li className="left clearfix">
+          <div className="chat-body clearfix">
+            <div className="header">
+              <strong className="pull-right primary-font">
+                +{message.sender.username}
+              </strong>
+              <small className="text-muted">
+                <i className="fa fa-clock-o fa-fw"></i>
+                {message.sendDate}
+              </small>
+            </div>
+            <p>{message.content}</p>
+          </div>
+        </li>
+      </div>
+    );
   }
   function showHello(message) {
-    var html = "";
-    html += '<li className="left clearfix">';
-    html += '	<div className="chat-body clearfix">';
-    html += '	<div className="header">';
-    html +=
-      '		<strong className="primary-font">' +
-      message.sender.username +
-      "</strong>";
-    html += '		<small className="pull-right text-muted">';
-    html += '			<i className="fa fa-clock-o fa-fw"></i>' + message.sendDate;
-    html += "		</small>";
-    html += "	</div>";
-    html += "	<p>";
-    html += message.sender.username + "님이 입장하였습니다";
-    html += "	</p>";
-    html += "	</div>";
-    html += "</li>";
-    $(".chat").append(html);
-    $(".panel-body").scrollTop($(".chat")[0].scrollHeight);
+    console.log(message);
+    // $(".chat").append(html);
+    // $(".panel-body").scrollTop($(".chat")[0].scrollHeight);
+    return (
+      <div>
+        <li className="left clearfix">
+          <div className="chat-body clearfix">
+            <div className="header">
+              <strong className="primary-font">
+                {message.sender.username}
+              </strong>
+              <small className="pull-right text-muted">
+                <i className="fa fa-clock-o fa-fw"></i>
+                {message.sendDate}
+              </small>
+            </div>
+            <p>{message.sender.username}님이 입장하셨습니다</p>
+          </div>
+        </li>
+      </div>
+    );
   }
   function showBye(message) {
-    var html = "";
-    // var date = message.sendDate;
-    html += '<li className="left clearfix">';
-    html += '	<div className="chat-body clearfix">';
-    html += '	<div className="header">';
-    html +=
-      '		<strong className="primary-font">' +
-      message.sender.username +
-      "</strong>";
-    html += '		<small className="pull-right text-muted">';
-    html += '			<i className="fa fa-clock-o fa-fw"></i>' + message.sendDate;
-    html += "		</small>";
-    html += "	</div>";
-    html += "	<p>";
-    html += message.sender.username + "님이 퇴장하였습니다";
-    html += "	</p>";
-    html += "	</div>";
-    html += "</li>";
-    $(".chat").append(html);
-    $(".panel-body").scrollTop($(".chat")[0].scrollHeight);
+    // $(".chat").append(html);
+    // $(".panel-body").scrollTop($(".chat")[0].scrollHeight);
+    return (
+      <div>
+        <li className="left clearfix">
+          <div className="chat-body clearfix">
+            <div className="header">
+              <strong className="primary-font">
+                {message.sender.username}
+              </strong>
+              <small className="pull-right text-muted">
+                <i className="fa fa-clock-o fa-fw"></i>
+                {message.sendDate}
+              </small>
+            </div>
+            <p>{message.sender.username}님이 퇴장하였습니다</p>
+          </div>
+        </li>
+      </div>
+    );
   }
-  $(function () {
-    $("form").on("submit", function (e) {
-      e.preventDefault();
-    });
-    $("#connect").click(function () {
-      // 소켓 연결
-      console.log("전");
-      connect();
-      console.log("여기");
-    });
-    $("#disconnect").click(function () {
-      // 소켓 연결 끊음
-      disconnect();
-    });
-    $("#btn-chat").click(function () {
-      // 메시지 전달
+  //   $(function () {
+  //     $("form").on("submit", function (e) {
+  //       e.preventDefault();
+  //     });
+  //     $("#connect").click(function () {
+  //       // 소켓 연결
+  //       console.log("전");
+  //       connect();
+  //       console.log("여기");
+  //     });
+  //     $("#disconnect").click(function () {
+  //       // 소켓 연결 끊음
+  //       disconnect();
+  //     });
+  //     $("#btn-chat").click(function () {
+  //       // 메시지 전달
 
-      sendDetail();
-      console.log("send부분");
-      $("#btn-input").val("");
-    });
-  });
+  //       sendDetail();
+  //       console.log("send부분");
+  //       $("#btn-input").val("");
+  //     });
+  //   });
   return (
     <div>
-      <script src="Chat2.js"></script>
+      <script src="Chat1.js"></script>
       <script
         type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.min.js"
@@ -214,7 +217,7 @@ const Chat2 = () => {
                     id="connect"
                     className="btn btn-xs btn-danger"
                     type="submit"
-                    onClick={connect}
+                    onClick={((e) => e.preventDefault(), connect)}
                   >
                     ON
                   </button>
@@ -223,6 +226,7 @@ const Chat2 = () => {
                     className="btn btn-xs"
                     type="submit"
                     disabled="disabled"
+                    onClick={disconnect}
                   >
                     OFF
                   </button>
@@ -256,6 +260,7 @@ const Chat2 = () => {
                           className="btn btn-info btn-sm"
                           id="btn-chat"
                           type="submit"
+                          onClick={sendDetail}
                         >
                           Send
                         </button>
@@ -270,27 +275,5 @@ const Chat2 = () => {
       </div>
     </div>
   );
-  // <div>
-  //   <form>
-  //     <label>이름</label>
-  //     <input type="text" placeholder="이름을 적어주세요"></input>
-  //   </form>
-  //   <form>
-  //     <button id="connect" className="btn btn-xs btn-danger" type="submit">
-  //       ON
-  //     </button>
-  //     <button
-  //       id="disconnect"
-  //       className="btn btn-xs"
-  //       type="submit"
-  //       disabled="disabled"
-  //     >
-  //       OFF
-  //     </button>
-  //   </form>
-  //   <input type="text" placeholder="메시지 입력"></input>
-  //   <button type="submit">Send</button>
-  // </div>
-  // );
 };
-export default Chat2;
+export default Chat1;

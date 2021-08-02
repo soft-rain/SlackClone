@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "./Workspace.css";
 import axios from "axios";
-import Chat2 from "./Chat2";
-
+// import Chat1 from "./Chat1";
+import Chat1 from "./Chat1";
 const memberarr = [];
 const menuarr = [];
 // const picarr = [];
@@ -110,7 +110,7 @@ export default function Workspace() {
           </div>
           <div className="chat">
             chat-space
-            <Chat2 />
+            <Chat1 />
             <div className="send-message-box">
               #{menu[0]}에게 메시지 보내기 부분
             </div>
