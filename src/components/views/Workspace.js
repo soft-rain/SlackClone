@@ -21,25 +21,25 @@ export default function Workspace() {
     .then((response) => {
       // console.log(response.data);
       setMessage(response.data.message);
-      for (var i = 0; i < response.data.data.workspaceMemberList.length; i++) {
-        if (response.data.data.workspaceMemberList[i] === undefined) break;
+      for (var i = 0; i < response.data.data.memberList.length; i++) {
+        if (response.data.data.memberList[i] === undefined) break;
         else {
           memberarr.push(
             <div>
               <img
                 className="member-picture"
-                src={response.data.data.workspaceMemberList[i].member.picture}
+                src={response.data.data.memberList[i].picture}
                 alt=""
               ></img>
               &nbsp;
-              {response.data.data.workspaceMemberList[i].member.nickname}
+              {response.data.data.memberList[i].nickname}
             </div>
           );
         }
       }
       setNickname(memberarr);
       // setProfilepic(picarr);
-      setUserpic(response.data.data.workspaceMemberList[0].member.picture);
+      setUserpic(response.data.data.memberList[0].picture);
       for (var j = 0; j < response.data.data.channelList.length; j++) {
         if (response.data.data.channelList[j] === undefined) break;
         else {

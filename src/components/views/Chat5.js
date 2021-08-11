@@ -10,6 +10,8 @@ function Chat5() {
     const handleSubmit = (e) => {
       e.preventDefault();
       console.log(`Form submitted, ${message}`);
+
+      sendMessage(message);
     };
     return (
       <form onSubmit={handleSubmit}>
@@ -41,7 +43,7 @@ function Chat5() {
   //   }
   // }
   function connect() {
-    var socket = new SockJS("http://172.30.1.34:8080/socket");
+    var socket = new SockJS("https://1887898f2165.ngrok.io/socket");
     stompClient = Stomp.over(socket); //STOMP 초기화
 
     socket.onopen = function () {
@@ -88,7 +90,7 @@ function Chat5() {
   }
   //메시지 전송
   function sendMessage(text) {
-    stompClient.send("/app/chat.1", {}, JSON.stringify({ content: text }));
+    stompClient.send("/app/chat.1", {}, { content: text });
     console.log("send");
   }
   function printMessage(msg) {
