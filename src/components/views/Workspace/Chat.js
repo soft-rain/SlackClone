@@ -2,34 +2,47 @@ import React, { useState } from "react";
 // import SockJS from "react-stomp";
 import SockJS from "sockjs-client";
 import { Stomp } from "@stomp/stompjs";
-import "./Chat5.css";
-var stompClient = null;
-function Chat5() {
+import "./Workspace.css";
+import "./Chat.css";
+function Chat() {
+  var stompClient = null;
+
   const Form = () => {
     const [message, setMessage] = useState("");
-    const handleSubmit = (e) => {
-      e.preventDefault();
-      console.log(`Form submitted, ${message}`);
 
+    const handleSubmit = (e) => {
+      const DisplayMessage = () => {
+        return <div className="chatBox">MESSAGEEEE</div>;
+      };
+      e.preventDefault();
+      console.log(`Message Sent: ${message}`);
       sendMessage(message);
+      DisplayMessage();
+      console.log("display");
+      e.target.reset(); //form 초기화하기
     };
+
     return (
       <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="메시지 입력"
-          className="msgForm"
-          onChange={(e) => setMessage(e.target.value)}
-        ></input>
         <div>
-          <button
-            type="submit"
-            className="sendbutton"
-            onClick={(message) => sendMessage(message)}
-          >
-            Send
-          </button>
+          <input
+            type="text"
+            placeholder="#00에게 메시지 보내기"
+            className="send-message-box"
+            onChange={(e) => setMessage(e.target.value)}
+            // onKeyPress={(e) => (message) => sendMessage(message)}
+          ></input>
+          <span>
+            <button
+              type="submit"
+              className="sendbutton"
+              // onClick={(message) => sendMessage(message)} =>오류뜸!!
+            >
+              Send
+            </button>
+          </span>
         </div>
+        {/* <DisplayMessage /> */}
       </form>
     );
   };
@@ -43,7 +56,7 @@ function Chat5() {
   //   }
   // }
   function connect() {
-    var socket = new SockJS("https://1887898f2165.ngrok.io/socket");
+    var socket = new SockJS("http://172.16.101.28:8080/socket");
     stompClient = Stomp.over(socket); //STOMP 초기화
 
     socket.onopen = function () {
@@ -90,24 +103,33 @@ function Chat5() {
   }
   //메시지 전송
   function sendMessage(text) {
-    stompClient.send("/app/chat.1", {}, { content: text });
+    stompClient.send("/app/chat.1", {}, JSON.stringify({ content: text }));
     console.log("send");
+    console.log(JSON.stringify({ content: text }));
   }
   function printMessage(msg) {
     console.log("메시지: ", msg);
   }
+  // function displayMessage(msg) {
+  //   console.log("채팅박스: ", msg);
+  //   return (
+  //     <div>
+  //       <h1 className="chatBox">{msg}</h1>
+  //     </div>
+  //   );
+  // }
   return (
     <div>
       <script src="Chat5.js"></script>
-      <script src="http://cdn.sockjs.org/sockjs-0.3.min.js"></script>;
-      <form>
+      <script src="http://cdn.sockjs.org/sockjs-0.3.min.js"></script>
+      {/* <form>
         <label className="username">이름</label>
         <input
           className="usernameForm"
           type="text"
           placeholder="이름을 적어주세요"
         ></input>
-      </form>
+      </form> */}
       <form>
         <div>
           <button
@@ -134,4 +156,4 @@ function Chat5() {
   );
 }
 
-export default Chat5;
+export default Chat;

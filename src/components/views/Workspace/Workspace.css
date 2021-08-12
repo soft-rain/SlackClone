@@ -149,16 +149,3 @@
   /* 임시 */
   /* background-color: goldenrod; */
 }
-.send-message-box {
-  display: block;
-  background-color: white;
-  width: 75%;
-  height: 20%;
-  margin-bottom: 2.5%;
-  margin-left: 2.5%;
-  border-radius: 10px;
-  position: absolute;
-  bottom: 0;
-  float: left;
-  border: gray 1px solid;
-}

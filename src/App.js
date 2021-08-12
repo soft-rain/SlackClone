@@ -6,7 +6,7 @@ import AuthCode from "./components/views/LoginPage/AuthCode";
 import LoginPage from "./components/views/LoginPage/LoginPage";
 import RegisterPage from "./components/views/RegisterPage/RegisterPage";
 import Auth from "./hoc/auth";
-import Workspaces from "./components/views/Workspace";
+import Workspaces from "./components/views/Workspace/Workspace";
 function App() {
   return (
     <Router>

@@ -1,0 +1,56 @@
+.usernameForm {
+  border-width: 2px;
+  color: black;
+}
+.usernameForm::placeholder {
+  color: gray;
+}
+.msgForm {
+  border-width: 2px;
+  color: black;
+}
+.msgForm::placeholder {
+  color: gray;
+}
+#connect {
+  color: cornflowerblue;
+}
+#disconnect {
+  color: crimson;
+}
+.send-message-box {
+  display: block;
+  background-color: white;
+  width: 75%;
+  height: 10%;
+  margin-bottom: 2.5%;
+  margin-left: 2.5%;
+  border-radius: 10px;
+  position: absolute;
+  bottom: 0;
+  float: left;
+  border: gray 1px solid;
+}
+.send-message-box::placeholder {
+  color: rgb(128, 128, 128);
+  font-style: italic;
+}
+.sendbutton {
+  display: block;
+  color: white;
+  border-color: rgb(52, 110, 52) 2px solid;
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(52, 110, 52);
+  width: 5vw;
+  height: 5vh;
+  position: absolute;
+  bottom: 3rem;
+  right: 3rem;
+}
+.chatBox {
+  background-color: darkslateblue;
+  width: 100px;
+  height: 10vh;
+  color: red;
+}

@@ -55,7 +55,7 @@ export async function Googletoken(dataTosubmit) {
     //   payload: request,
     // };
     const request = await axios.post(
-      "https://1887898f2165.ngrok.io/api/member/login/google",
+      "http://172.16.101.28:8080/api/member/login/google",
       dataTosubmit,
       {
         headers: { "Content-Type": `application/json` },

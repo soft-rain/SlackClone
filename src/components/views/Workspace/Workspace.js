@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import "./Workspace.css";
 import axios from "axios";
-// import Chat5 from "./Chat5";
-import Chat5 from "./Chat5";
+import Chat from "./Chat";
 const memberarr = [];
 const menuarr = [];
 // const picarr = [];
@@ -11,6 +10,7 @@ export default function Workspace() {
   const [menu, setMenu] = useState("");
   const [nickname, setNickname] = useState("");
   // const [profilepic, setProfilepic] = useState("");
+  const [channel, setChannel] = useState("");
   const [userpic, setUserpic] = useState("");
   axios
     .get("api/workspaces/1", {
@@ -47,6 +47,7 @@ export default function Workspace() {
         }
       }
       setMenu(menuarr);
+      setChannel(response.data.data.channelList[0].description);
     });
 
   return (
@@ -109,11 +110,11 @@ export default function Workspace() {
             </div>
           </div>
           <div className="chat">
-            chat-space
-            <Chat5 />
-            <div className="send-message-box">
+            {channel}
+            <Chat />
+            {/* <div className="send-message-box">
               #{menu[0]}에게 메시지 보내기 부분
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
