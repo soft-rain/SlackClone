@@ -43,13 +43,16 @@ export default function Workspace() {
       for (var j = 0; j < response.data.data.channelList.length; j++) {
         if (response.data.data.channelList[j] === undefined) break;
         else {
-          menuarr.push(<div>{response.data.data.channelList[j].name}</div>);
+          menuarr.push(response.data.data.channelList[j].name);
         }
       }
       setMenu(menuarr);
       setChannel(response.data.data.channelList[0].description);
     });
-
+  const DisplayMenu = () => {
+    const menuList = menuarr.map((item) => <div> # {item}</div>);
+    return menuList;
+  };
   return (
     <div className="fullbox">
       <div className="top-bar">
@@ -85,14 +88,6 @@ export default function Workspace() {
           <div className="sub-bar1">
             <div className="sub-bar1-wrap">
               <div className="sub-bar1-text">슬클</div>
-              <button
-                className="sub-bar1-down"
-                type="chevron-down"
-                aria-hidden="true"
-                onClick={onchange}
-              >
-                ^
-              </button>
             </div>
           </div>
 
@@ -100,8 +95,9 @@ export default function Workspace() {
         </div>
         <div className="main-workspace">
           <div className="side-bar">
+            <div className="toggle">채널</div>
             <div className="menu-list">
-              {menu}
+              <DisplayMenu />
               <br></br>
             </div>
             <div className="member-list">
@@ -110,7 +106,16 @@ export default function Workspace() {
             </div>
           </div>
           <div className="chat">
-            {channel}
+            <div className="chatInfoBox">
+              <span style={{ whiteSpace: "pre-wrap", fontWeight: "800" }}>
+                # {menu[0]}
+              </span>
+              <span style={{ fontWeight: "500" }}>
+                을 찾으셨습니다.<br></br>
+              </span>
+              <div style={{ fontWeight: "500" }}> {channel}</div>
+            </div>
+
             <Chat />
             {/* <div className="send-message-box">
               #{menu[0]}에게 메시지 보내기 부분

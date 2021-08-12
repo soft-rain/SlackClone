@@ -143,9 +143,17 @@
 }
 .chat {
   height: 100%;
-  display: block;
+  display: inline-block;
   width: 80%;
-  border: 2px solid orangered;
-  /* 임시 */
-  /* background-color: goldenrod; */
+  border: 1px solid gray;
+  white-space: pre-wrap;
+  font-size: 15px;
+  line-height: 1.46668;
+  font-weight: 400;
+  font-weight: 700;
+  color: rgba(var(--sk_primary_foreground, 29, 28, 29), 1);
+}
+.chatInfoBox {
+  margin: 10px;
+  background-color: rgba(114, 114, 114, 0.274);
 }

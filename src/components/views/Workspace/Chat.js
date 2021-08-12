@@ -6,7 +6,7 @@ import "./Workspace.css";
 import "./Chat.css";
 function Chat() {
   var stompClient = null;
-
+  connect();
   const Form = () => {
     const [message, setMessage] = useState("");
 
@@ -18,7 +18,6 @@ function Chat() {
       console.log(`Message Sent: ${message}`);
       sendMessage(message);
       DisplayMessage();
-      console.log("display");
       e.target.reset(); //form 초기화하기
     };
 
@@ -42,7 +41,6 @@ function Chat() {
             </button>
           </span>
         </div>
-        {/* <DisplayMessage /> */}
       </form>
     );
   };
@@ -72,23 +70,22 @@ function Chat() {
         //메세지를 받는다. (각각 구독하기)
         stompClient.subscribe("/topic/on", function (msg) {
           printMessage(JSON.parse(msg.body));
-          console.log("connect1");
+          console.log("1");
         });
 
         //입장 메시지 전달
         stompClient.subscribe("/topic/1/message", function (msg) {
           console.log(msg);
           printMessage(JSON.parse(msg.body));
-          console.log("connect2");
+          console.log("2");
         });
         stompClient.subscribe("/topic/off", function (msg) {
           printMessage(JSON.parse(msg.body));
-          console.log("connect3");
+          console.log("3");
         });
         //입장글
         stompClient.send("/app/on", {});
-
-        console.log("connect4");
+        console.log("4");
       }
     );
   }
@@ -104,8 +101,6 @@ function Chat() {
   //메시지 전송
   function sendMessage(text) {
     stompClient.send("/app/chat.1", {}, JSON.stringify({ content: text }));
-    console.log("send");
-    console.log(JSON.stringify({ content: text }));
   }
   function printMessage(msg) {
     console.log("메시지: ", msg);
@@ -120,7 +115,7 @@ function Chat() {
   // }
   return (
     <div>
-      <script src="Chat5.js"></script>
+      <script src="Chat.js"></script>
       <script src="http://cdn.sockjs.org/sockjs-0.3.min.js"></script>
       {/* <form>
         <label className="username">이름</label>
@@ -130,13 +125,13 @@ function Chat() {
           placeholder="이름을 적어주세요"
         ></input>
       </form> */}
-      <form>
+      {/* <form>
         <div>
           <button
             id="connect"
             className="onbutton"
             type="button"
-            onClick={connect}
+            // onClick={connect}
           >
             ON
           </button>
@@ -150,7 +145,7 @@ function Chat() {
             OFF
           </button>
         </div>
-      </form>
+      </form> */}
       <Form />
     </div>
   );
