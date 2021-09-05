@@ -1,17 +1,54 @@
-import React, { useEffect, useState } from "react";
-// import SockJS from "react-stomp";
+import React, { useState } from "react";
 import SockJS from "sockjs-client";
 import { Stomp } from "@stomp/stompjs";
 import "./Workspace.css";
 import "./Chat.css";
-import axios from "axios";
 
 function Chat() {
   var stompClient = null;
   connect();
-  const [msgData, setMsgData] = useState([]);
-  const [curmsg, setCurmsg] = useState("");
   const [sender, setSender] = useState("");
+  const [time, setTime] = useState("");
+  const [content, setContent] = useState("");
+
+  //Socket과 연결하기
+  function connect() {
+    var socket = new SockJS("http://b454-222-107-16-12.ngrok.io/socket");
+    stompClient = Stomp.over(socket); //STOMP 초기화
+
+    socket.onopen = function () {
+      console.log("open");
+    };
+    stompClient.connect(
+      { Authorization: sessionStorage.getItem("accessToken") },
+      function (msg) {
+        stompClient.subscribe("/topic/on", function (msg) {
+          // 연결 성공
+          //   console.log(JSON.parse(msg.body));
+        });
+        //입장 메시지 전달
+        stompClient.subscribe("/topic/1/message", function (msg) {
+          setSender(JSON.parse(msg.body).member.nickname);
+          setTime(JSON.parse(msg.body).createdAt);
+          setContent(JSON.parse(msg.body).content);
+        });
+        // stompClient.subscribe("/topic/off", function (msg) {
+        //   console.log(JSON.parse(msg.body));
+        // });
+        //입장글
+        // stompClient.send("/app/on", {});
+      }
+    );
+  }
+
+  //메시지 전송
+  function sendMessage(text) {
+    stompClient.send("/app/chat.1", {}, JSON.stringify({ content: text }));
+    // setCurmsg(text);
+    // console.log("curmsg", curmsg);
+  }
+
+  //입력창
   const Form = () => {
     const [message, setMessage] = useState("");
 
@@ -33,82 +70,26 @@ function Chat() {
               onChange={(e) => setMessage(e.target.value)}
               // onKeyPress={(e) => (message) => sendMessage(message)}
             ></input>
-            <span>
-              <button type="submit" className="sendbutton" onClick={PrevChat}>
-                Send
-              </button>
-              {/* <button onClick={PrevChat}>모르겠다</button> */}
-            </span>
+            <span></span>
           </div>
         </form>
-        {/* <DisplayMessage /> */}
       </div>
     );
   };
-  async function PrevChat() {
-    const res = await axios.get("/api/channels/1/messages");
-    // console.log("RES : ", res);
-    // setMsgData(res.data.data[res.data.data.length - 2].content);
-    // setMsgData(res.data.data[res.data.length - 1].content);
 
-    // console.log(res.data.data[0]);
-    // console.log("sender", res.data.data[0].member.nickname);
-    // console.log("message", res.data.data[0].content);
-
-    return sender;
-  }
-
-  function connect() {
-    var socket = new SockJS("http://b454-222-107-16-12.ngrok.io/socket");
-    stompClient = Stomp.over(socket); //STOMP 초기화
-
-    socket.onopen = function () {
-      console.log("open");
-    };
-    stompClient.connect(
-      { Authorization: sessionStorage.getItem("accessToken") },
-      function (msg) {
-        //메세지를 받는다. (각각 구독하기)
-        stompClient.subscribe("/topic/on", function (msg) {
-          console.log(JSON.parse(msg.body));
-        });
-        //입장 메시지 전달
-        stompClient.subscribe("/topic/1/message", function (msg) {
-          console.log(JSON.parse(msg.body));
-          console.log(JSON.parse(msg.body).createdAt);
-          console.log(JSON.parse(msg.body).content);
-          console.log(JSON.parse(msg.body).member.nickname);
-          if (JSON.parse(msg.body).createdAt !== undefined) {
-            setCurmsg(JSON.parse(msg.body).content);
-            // setSender(JSON.parse(msg.body).member);
-          } else {
-            setCurmsg("에러");
-          }
-          setSender(JSON.parse(msg.body).member.nickname);
-        });
-        stompClient.subscribe("/topic/off", function (msg) {
-          // PrintMessage(JSON.parse(msg.body));
-          console.log(JSON.parse(msg.body));
-        });
-        //입장글
-        stompClient.send("/app/on", {});
-      }
-    );
-  }
-  //메시지 전송
-  function sendMessage(text) {
-    stompClient.send("/app/chat.1", {}, JSON.stringify({ content: text }));
-    setCurmsg(text);
-    console.log("curmsg", curmsg);
-  }
+  //채팅창
   const ChatBox = () => {
     return (
       <div>
         <h2>{/* <PrevChat /> */}</h2>
-        <h2>
-          {" "}
-          {sender} {curmsg}
-        </h2>
+        <span>
+          {sender}
+          {"   "}
+        </span>
+        <span>
+          {content}
+          {"    "} {time}
+        </span>
       </div>
     );
   };

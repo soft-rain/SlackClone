@@ -1,16 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 const AddChannel = () => {
-  const [channel, setChannel] = useState("");
+  const [name, setName] = useState("");
   const [des, setDes] = useState("");
+  const handleSubmit = (event) => {
+    event.preventDefault();
 
-  const addChannel = () => {
     axios({
       method: "post",
       url: "/api/workspaces/1/channels",
       data: {
-        name: { channel },
-        description: { des },
+        name: `${name}`,
+        description: `${des}`,
         isPrivate: true,
       },
       headers: {
@@ -19,16 +20,22 @@ const AddChannel = () => {
       },
     }).then((response) => console.log(response));
   };
-
   return (
     <div>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div>
-          채널명
-          <input value={(e) => setChannel(e.target.value)} />
-          description
-          <input value={(e) => setDes(e.target.value)} />
+          <input
+            placeholder="channel"
+            onChange={(e) => setName(e.target.value)}
+            value={name}
+          />
+          <input
+            placeholder="description"
+            onChange={(e) => setDes(e.target.value)}
+            value={des}
+          />
         </div>
+        <button type="submit">+</button>
       </form>
     </div>
   );
