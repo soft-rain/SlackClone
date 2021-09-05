@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { sendEmail } from "../../../_actions/user_action";
-import "./Login.css";
+import { sendEmail } from "../_actions/user_action";
+import "../components/views/Login.css";
 import { withRouter, Link } from "react-router-dom";
-import LoginwGoogle from "./LoginwGoogle.js";
+import LoginwGoogle from "../components/views/LoginPage/LoginwGoogle.js";
 
 function LoginPage(props) {
   const dispatch = useDispatch();

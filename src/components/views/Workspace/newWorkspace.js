@@ -3,15 +3,13 @@ import "./Workspace.css";
 import axios from "axios";
 import Chat from "./Chat";
 import Channel from "./Channel";
-const memberarr = [];
-const menuarr = [];
-// const picarr = [];
-export default function Workspace() {
-  const [message, setMessage] = useState("");
-  const [menu, setMenu] = useState("");
-  const [nickname, setNickname] = useState("");
-  // const [profilepic, setProfilepic] = useState("");
+var memberArr = [];
+var channelArr = [];
+var desArr = [];
+function NewWorkspace() {
   const [channel, setChannel] = useState("");
+  const [nickname, setNickname] = useState("");
+  const [chDes, setChDes] = useState("");
   const [userpic, setUserpic] = useState("");
   axios
     .get("api/workspaces/1", {
@@ -20,40 +18,24 @@ export default function Workspace() {
       },
     })
     .then((response) => {
-      // console.log(response.data);
-      setMessage(response.data.message);
-      for (var i = 0; i < response.data.data.memberList.length; i++) {
-        if (response.data.data.memberList[i] === undefined) break;
-        else {
-          memberarr.push(
-            <div>
-              <img
-                className="member-picture"
-                src={response.data.data.memberList[i].picture}
-                alt=""
-              ></img>
-              &nbsp;
-              {response.data.data.memberList[i].nickname}
-            </div>
-          );
-        }
-      }
-      setNickname(memberarr);
-      // setProfilepic(picarr);
-      setUserpic(response.data.data.memberList[0].picture);
-      for (var j = 0; j < response.data.data.channelList.length; j++) {
-        if (response.data.data.channelList[j] === undefined) break;
-        else {
-          menuarr.push(response.data.data.channelList[j].name);
-        }
-      }
-      setMenu(menuarr);
-      setChannel(response.data.data.channelList[0].description);
+      response.data.data.memberList.map((member) => {
+        memberArr.push(
+          <div>
+            <img className="member-picture" src={member.picture} alt=""></img>
+            &nbsp;
+            {member.nickname}
+          </div>
+        );
+      });
+      response.data.data.channelList.map((channel) => {
+        channelArr.push(channel.name);
+        desArr.push(channel.description);
+      });
+      setChannel(channelArr);
+      setNickname(memberArr);
+      setChDes(desArr);
     });
-  const DisplayMenu = () => {
-    const menuList = menuarr.map((item) => <div> # {item}</div>);
-    return menuList;
-  };
+
   return (
     <div className="fullbox">
       <div className="top-bar">
@@ -91,7 +73,7 @@ export default function Workspace() {
             </div>
           </div>
 
-          <div className="sub-bar2">{message}</div>
+          {/* <div className="sub-bar2">{message}</div> */}
         </div>
         <div className="main-workspace">
           <div className="side-bar">
@@ -106,17 +88,17 @@ export default function Workspace() {
           <div className="chat">
             <div className="chatInfoBox">
               <span style={{ whiteSpace: "pre-wrap", fontWeight: "800" }}>
-                # {menu[0]}
+                # {channel[0]}
               </span>
               <span style={{ fontWeight: "500" }}>
                 을 찾으셨습니다.<br></br>
               </span>
-              <div style={{ fontWeight: "500" }}> {channel}</div>
+              <div style={{ fontWeight: "500" }}>{/* {channel} */}</div>
             </div>
 
             <Chat />
             {/* <div className="send-message-box">
-              #{menu[0]}에게 메시지 보내기 부분
+              #{channel[0]}에게 메시지 보내기 부분
             </div> */}
           </div>
         </div>
@@ -126,3 +108,4 @@ export default function Workspace() {
     </div>
   );
 }
+export default NewWorkspace;

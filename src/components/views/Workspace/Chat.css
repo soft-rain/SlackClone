@@ -49,8 +49,29 @@
   right: 3rem;
 }
 .chatBox {
-  background-color: darkslateblue;
-  width: 100px;
+  background-color: rgba(128, 128, 128, 0.575);
+  width: 100%;
+
   height: 10vh;
-  color: red;
+  color: black;
+}
+.chatBoxContainer {
+  /* background-color: green; */
+  margin-left: 1%;
+}
+.chat {
+  height: 100%;
+  display: inline-block;
+  width: 80%;
+  border: 1px solid gray;
+  white-space: pre-wrap;
+  font-size: 15px;
+  line-height: 1.46668;
+  font-weight: 400;
+  font-weight: 700;
+  color: rgba(var(--sk_primary_foreground, 29, 28, 29), 1);
+}
+.chatInfoBox {
+  margin: 10px;
+  background-color: rgba(114, 114, 114, 0.274);
 }

@@ -5,8 +5,7 @@ import { Googletoken } from "../../../_actions/user_action";
 
 function LoginwGoogle(props) {
   const googleLoginBtn = useRef(null);
-  // const [token, setToken] = useState("");
-  const dispatch = useDispatch(); // dispatch 사용 (redux)
+  const dispatch = useDispatch();
 
   useEffect(() => {
     googleSDK();
