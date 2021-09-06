@@ -13,7 +13,7 @@ function Chat() {
 
   //Socket과 연결하기
   function connect() {
-    var socket = new SockJS("http://b454-222-107-16-12.ngrok.io/socket");
+    var socket = new SockJS("http://192.168.0.5:8080/socket");
     stompClient = Stomp.over(socket); //STOMP 초기화
 
     socket.onopen = function () {

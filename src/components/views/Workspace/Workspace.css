@@ -101,6 +101,12 @@
 }
 .sub-bar2 {
   background-color: white;
+  display: block;
+  color: black;
+  font-weight: 800;
+  font-size: 17px;
+  align-items: flex-start;
+  margin: 10px 10px 10px 10px;
 }
 .main-workspace {
   /* background-color: khaki; */
@@ -129,11 +135,14 @@
   width: 20%;
   display: block;
   /* margin: 0 auto; */
-  font-size: 10px;
+  margin: 2px 2px 2px 0;
+  font-size: 15px;
   word-break: keep-all;
 }
 .member-picture {
   /* 줄 다시 맞춰야함 */
+  border-radius: 4px;
+  color: gray;
   width: 10%;
   height: 10%;
   margin: auto;

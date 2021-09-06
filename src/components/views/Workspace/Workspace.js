@@ -6,7 +6,7 @@ import Channel from "./Channel";
 var memberArr = [];
 var channelArr = [];
 var desArr = [];
-function NewWorkspace() {
+function Workspace() {
   const [channel, setChannel] = useState("");
   const [nickname, setNickname] = useState("");
   const [chDes, setChDes] = useState("");
@@ -73,7 +73,7 @@ function NewWorkspace() {
             </div>
           </div>
 
-          {/* <div className="sub-bar2">{message}</div> */}
+          <div className="sub-bar2"># {channel[0]}</div>
         </div>
         <div className="main-workspace">
           <div className="side-bar">
@@ -93,7 +93,7 @@ function NewWorkspace() {
               <span style={{ fontWeight: "500" }}>
                 을 찾으셨습니다.<br></br>
               </span>
-              <div style={{ fontWeight: "500" }}>{/* {channel} */}</div>
+              <div style={{ fontWeight: "500" }}>{chDes[0]} </div>
             </div>
 
             <Chat />
@@ -108,4 +108,4 @@ function NewWorkspace() {
     </div>
   );
 }
-export default NewWorkspace;
+export default Workspace;

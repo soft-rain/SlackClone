@@ -1,43 +1,23 @@
 import React, { useState } from "react";
 import axios from "axios";
-const AddChannel = () => {
-  const [name, setName] = useState("");
-  const [des, setDes] = useState("");
-  const handleSubmit = (event) => {
-    event.preventDefault();
+import Modal from "./Modal";
 
-    axios({
-      method: "post",
-      url: "/api/workspaces/1/channels",
-      data: {
-        name: `${name}`,
-        description: `${des}`,
-        isPrivate: true,
-      },
-      headers: {
-        Authorization: sessionStorage.getItem("accessToken"),
-        "Content-Type": "application/json",
-      },
-    }).then((response) => console.log(response));
+const AddChannel = (props) => {
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const openModal = () => {
+    setModalOpen(true);
+  };
+  const closeModal = () => {
+    setModalOpen(false);
   };
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <input
-            placeholder="channel"
-            onChange={(e) => setName(e.target.value)}
-            value={name}
-          />
-          <input
-            placeholder="description"
-            onChange={(e) => setDes(e.target.value)}
-            value={des}
-          />
-        </div>
-        <button type="submit">+</button>
-      </form>
-    </div>
+    <React.Fragment>
+      <button onClick={openModal}>+</button>
+      <Modal open={modalOpen} close={closeModal} header="채널 생성">
+        <main> {props.children} </main>
+      </Modal>
+    </React.Fragment>
   );
 };
 
