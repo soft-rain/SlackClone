@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./Modal.css";
 import "./Channel.css";
-import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";
 
@@ -10,6 +9,7 @@ const Modal = (props) => {
   const { open, close, header } = props;
   const [name, setName] = useState("");
   const [des, setDes] = useState("");
+  const [privacy, setPrivacy] = useState("");
 
   const [state, setState] = useState({
     checkedA: true,
@@ -17,6 +17,12 @@ const Modal = (props) => {
   });
   const handleChange = (event) => {
     setState({ ...state, [event.target.name]: event.target.checked });
+    console.log(event.target.checked);
+    if (event.target.checked === true) {
+      setPrivacy(true);
+    } else {
+      setPrivacy(false);
+    }
   };
 
   const handleSubmit = (event) => {
@@ -28,7 +34,7 @@ const Modal = (props) => {
       data: {
         name: `${name}`,
         description: `${des}`,
-        isPrivate: true,
+        isPrivate: `${privacy}`,
       },
       headers: {
         Authorization: sessionStorage.getItem("accessToken"),
@@ -132,12 +138,13 @@ const Modal = (props) => {
                       style={{ float: "right" }}
                       control={<Switch />}
                       label="Uncontrolled"
+                      onChange={handleChange}
                     />
                   </div>
                 </div>
               </div>
               <footer>
-                <button type="submit" onClick={(close, console.log("close"))}>
+                <button type="submit" onClick={close}>
                   생성
                 </button>
               </footer>
